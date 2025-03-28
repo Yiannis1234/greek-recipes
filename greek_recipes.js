@@ -961,31 +961,37 @@ let sortingOption = "default";
 
 // Initialize the app by setting up event listeners
 function initApp() {
-    // Add keypress event to allow adding ingredients with Enter key
-    document.getElementById('ingredient-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            addIngredient();
-            e.preventDefault();
-        }
-    });
+    // Add welcome screen animation
+    setTimeout(() => {
+        document.querySelector('.recipe-container').style.opacity = '1';
+        document.querySelector('.recipe-container').style.transform = 'translateY(0)';
+    }, 300);
     
-    // Set up autocomplete for ingredients
+    // Set default active sorting option
+    document.querySelector('.sort-button:nth-child(2)').classList.add('active');
+    
+    // Set the default active filters
+    document.querySelector('.difficulty-filter:first-child').classList.add('active');
+    document.querySelector('.time-filter:first-child').classList.add('active');
+    
+    // Initialize the ingredients datalist
     updateIngredientsDatalist();
     
-    // Add subtle parallax effect to welcome images
-    document.querySelectorAll('.welcome-image').forEach(img => {
-        img.addEventListener('mousemove', e => {
-            const { left, top, width, height } = img.getBoundingClientRect();
-            const x = (e.clientX - left) / width - 0.5;
-            const y = (e.clientY - top) / height - 0.5;
-            
-            img.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${y * -5}deg) scale(1.05)`;
-        });
+    // Add a small parallax effect for welcome image
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const welcomeElements = document.querySelectorAll('.welcome-emoji-foods .food-emoji');
         
-        img.addEventListener('mouseleave', () => {
-            img.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale(1)';
+        welcomeElements.forEach((element, index) => {
+            const speed = 0.1 * (index + 1);
+            element.style.transform = `translateY(${scrollPosition * speed}px)`;
         });
     });
+    
+    // Smooth scroll to top on page reload
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
 }
 
 // Call initApp when the DOM is fully loaded
@@ -1001,10 +1007,10 @@ function startRecipeGenerator() {
 }
 
 function updateIngredientsDatalist() {
-    const datalist = document.getElementById('ingredient-suggestions');
+    const datalist = document.getElementById('ingredients-list');
     datalist.innerHTML = '';
     
-    // Add only ingredients that haven't been selected yet
+    // Filter out already selected ingredients
     const availableIngredients = commonIngredients.filter(
         ingredient => !selectedIngredients.includes(ingredient)
     );

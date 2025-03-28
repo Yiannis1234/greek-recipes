@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Έξυπνος Γεννήτης Ελληνικών Συνταγών</title>
-    <link rel="stylesheet" href="greek_recipes.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>I Cook to Heal - Συνταγές με Ελληνικά Υλικά</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="greek_recipes.css">
+    <link rel="stylesheet" href="emoji_styles.css">
 </head>
 <body>
     <div class="bg-pattern"></div>
     <div class="container">
-        <div class="recipe-container">
-            <div id="welcome-screen" class="screen active">
-                <div class="logo">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <h1>Έξυπνος Γεννήτης Ελληνικών Συνταγών</h1>
-                <p>Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!</p>
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="recipe-container">
+                <div class="logo">I Cook to Heal</div>
+                <h1>Συνταγές οντότητα και καρδιακές διατροφής</h1>
+                <p>Καλωσήρθατε στη γεννήτρια συνταγών μας. Επιλέξτε τα συστατικά που έχετε διαθέσιμα και θα σας προτείνουμε αυθεντικές ελληνικές συνταγές.</p>
+                
                 <div class="features-list">
                     <div class="feature-item" style="--item-index: 0;">
                         <i class="fas fa-filter"></i>
-                        <span>Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος</span>
+                        <span>Φιλτράρετε τις συνταγές βάσει διατροφικών προτιμήσεων</span>
                     </div>
                     <div class="feature-item" style="--item-index: 1;">
                         <i class="fas fa-sort"></i>
@@ -32,130 +33,134 @@
                         <span>Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας</span>
                     </div>
                 </div>
-                <button class="start-btn" onclick="startRecipeGenerator()">
-                    <i class="fas fa-play-circle"></i> Ξεκινήστε
-                </button>
-            </div>
-
-            <div id="input-screen" class="screen">
-                <h2><i class="fas fa-leaf"></i> Επιλέξτε τα Συστατικά σας</h2>
-                <div class="ingredients-section">
-                    <div class="ingredients-input">
-                        <div class="input-with-suggestions">
-                            <i class="fas fa-search input-icon"></i>
-                            <input type="text" id="ingredient-input" placeholder="Προσθέστε συστατικό..." list="ingredient-suggestions">
-                            <datalist id="ingredient-suggestions">
-                                <!-- Common Greek ingredients populated via JavaScript -->
-                            </datalist>
-                        </div>
-                        <button onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
-                    </div>
-                    <div class="common-ingredients">
-                        <h4><i class="fas fa-thumbtack"></i> Δημοφιλή Συστατικά:</h4>
-                        <div class="ingredient-chips">
-                            <button class="ingredient-chip" onclick="quickAddIngredient('ντομάτες')"><i class="fas fa-apple-alt"></i> Ντομάτες</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('φέτα')"><i class="fas fa-cheese"></i> Φέτα</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('ελιές')"><i class="fas fa-seedling"></i> Ελιές</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('πατάτες')"><i class="fas fa-carrot"></i> Πατάτες</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('σπανάκι')"><i class="fas fa-leaf"></i> Σπανάκι</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('κιμάς')"><i class="fas fa-drumstick-bite"></i> Κιμάς</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('γιαούρτι')"><i class="fas fa-glass-whiskey"></i> Γιαούρτι</button>
-                            <button class="ingredient-chip" onclick="quickAddIngredient('μέλι')"><i class="fas fa-honey-pot"></i> Μέλι</button>
-                        </div>
-                    </div>
-                    <div class="selected-ingredients-container">
-                        <h4><i class="fas fa-check-circle"></i> Επιλεγμένα Συστατικά:</h4>
-                        <div class="selected-ingredients" id="selected-ingredients"></div>
-                    </div>
-                </div>
-
-                <div class="preferences-section">
-                    <h3><i class="fas fa-sliders-h"></i> Προτιμήσεις και Φίλτρα</h3>
-                    <div class="filter-section">
-                        <h4><i class="fas fa-utensils"></i> Διατροφικές Προτιμήσεις</h4>
-                        <div class="preferences-grid">
-                            <label class="preference-option">
-                                <input type="checkbox" value="vegetarian">
-                                <i class="fas fa-seedling pref-icon"></i> Χορτοφαγική
-                            </label>
-                            <label class="preference-option">
-                                <input type="checkbox" value="vegan">
-                                <i class="fas fa-leaf pref-icon"></i> Νηστίσιμη
-                            </label>
-                            <label class="preference-option">
-                                <input type="checkbox" value="gluten-free">
-                                <i class="fas fa-wheat-awn-circle-exclamation pref-icon"></i> Χωρίς γλουτένη
-                            </label>
-                            <label class="preference-option">
-                                <input type="checkbox" value="low-carb">
-                                <i class="fas fa-bread-slice pref-icon"></i> Χαμηλή σε υδατάνθρακες
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter-section">
-                        <h4><i class="fas fa-filter"></i> Φίλτρα</h4>
-                        <div class="filter-container">
-                            <span class="filter-label">Δυσκολία:</span>
-                            <div class="filter-options">
-                                <button class="difficulty-filter" onclick="setDifficultyFilter('all')">Όλες</button>
-                                <button class="difficulty-filter easy" onclick="setDifficultyFilter('easy')">Εύκολη</button>
-                                <button class="difficulty-filter medium" onclick="setDifficultyFilter('medium')">Μέτρια</button>
-                                <button class="difficulty-filter hard" onclick="setDifficultyFilter('hard')">Δύσκολη</button>
-                            </div>
-                        </div>
-                        
-                        <div class="filter-container">
-                            <span class="filter-label">Χρόνος Μαγειρέματος:</span>
-                            <div class="filter-options">
-                                <button class="time-filter" onclick="setTimeFilter('all')">Όλοι</button>
-                                <button class="time-filter" data-time="quick" onclick="setTimeFilter('quick')">< 30 λεπτά</button>
-                                <button class="time-filter" data-time="medium" onclick="setTimeFilter('medium')">30-60 λεπτά</button>
-                                <button class="time-filter" data-time="long" onclick="setTimeFilter('long')">> 60 λεπτά</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="generate-btn" onclick="generateRecipes()">
-                    <i class="fas fa-utensils"></i> Αναζήτηση Συνταγών
-                </button>
-            </div>
-
-            <div id="results-screen" class="screen">
-                <h2><i class="fas fa-book-open"></i> Συνταγές που Βρέθηκαν</h2>
                 
-                <div class="sorting-options">
-                    <button class="sort-button active" data-sort="default" onclick="setSortingOption('default')">
-                        <i class="fas fa-sort"></i> Προεπιλογή
-                    </button>
-                    <button class="sort-button" data-sort="alphabetical" onclick="setSortingOption('alphabetical')">
-                        <i class="fas fa-sort-alpha-down"></i> Αλφαβητικά
-                    </button>
-                    <button class="sort-button" data-sort="prep-time" onclick="setSortingOption('prep-time')">
-                        <i class="fas fa-clock"></i> Χρόνος Προετοιμασίας
-                    </button>
-                    <button class="sort-button" data-sort="cook-time" onclick="setSortingOption('cook-time')">
-                        <i class="fas fa-fire"></i> Χρόνος Μαγειρέματος
-                    </button>
-                    <button class="sort-button" data-sort="difficulty" onclick="setSortingOption('difficulty')">
-                        <i class="fas fa-chart-line"></i> Δυσκολία
-                    </button>
-                    <button class="sort-button" data-sort="calories" onclick="setSortingOption('calories')">
-                        <i class="fas fa-fire-alt"></i> Θερμίδες
-                    </button>
-                </div>
-                
-                <div class="recipes-grid" id="recipes-container"></div>
-                <button class="restart-btn" onclick="restartGenerator()">
-                    <i class="fas fa-redo"></i> Νέα Αναζήτηση
+                <button id="start-button" class="btn" onclick="startRecipeGenerator()">
+                    <i class="fas fa-utensils"></i> Ξεκινήστε
                 </button>
             </div>
         </div>
+        
+        <!-- Input Screen -->
+        <div id="input-screen" class="screen">
+            <div class="recipe-container">
+                <div class="logo">I Cook to Heal</div>
+                <h2>Επιλέξτε Συστατικά & Προτιμήσεις</h2>
+                
+                <div class="ingredients-section">
+                    <h3><i class="fas fa-carrot"></i> Επιλέξτε Συστατικά</h3>
+                    <p>Προσθέστε τα συστατικά που έχετε διαθέσιμα ή που θα θέλατε να περιλαμβάνονται στη συνταγή σας.</p>
+                    
+                    <div class="input-group">
+                        <input type="text" id="ingredient-input" list="ingredients-list" placeholder="Πληκτρολογήστε ένα συστατικό..." autocomplete="off">
+                        <datalist id="ingredients-list"></datalist>
+                        <button onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
+                    </div>
+                    
+                    <div class="quick-ingredients">
+                        <h4>Δημοφιλή Συστατικά:</h4>
+                        <div class="ingredient-chips">
+                            <div class="ingredient-chip" onclick="quickAddIngredient('φέτα')">φέτα</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('ελαιόλαδο')">ελαιόλαδο</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('ντομάτες')">ντομάτες</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('πατάτες')">πατάτες</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('κρεμμύδι')">κρεμμύδι</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('σκόρδο')">σκόρδο</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('κιμάς')">κιμάς</div>
+                            <div class="ingredient-chip" onclick="quickAddIngredient('μελιτζάνες')">μελιτζάνες</div>
+                        </div>
+                    </div>
+                    
+                    <div class="selected-ingredients-container">
+                        <h4>Επιλεγμένα Συστατικά:</h4>
+                        <div id="selected-ingredients" class="selected-ingredients"></div>
+                    </div>
+                </div>
+                
+                <div class="preferences-section">
+                    <h3><i class="fas fa-sliders-h"></i> Προτιμήσεις</h3>
+                    <p>Προσαρμόστε τις προτιμήσεις σας για πιο εξατομικευμένα αποτελέσματα.</p>
+                    
+                    <div class="preferences-group">
+                        <h4>Διατροφικές Προτιμήσεις:</h4>
+                        <div class="preference-options">
+                            <div class="preference-option">
+                                <input type="checkbox" id="vegetarian" name="preference" value="vegetarian">
+                                <label for="vegetarian">Χορτοφαγικό</label>
+                            </div>
+                            <div class="preference-option">
+                                <input type="checkbox" id="vegan" name="preference" value="vegan">
+                                <label for="vegan">Νηστίσιμο</label>
+                            </div>
+                            <div class="preference-option">
+                                <input type="checkbox" id="gluten-free" name="preference" value="gluten-free">
+                                <label for="gluten-free">Χωρίς Γλουτένη</label>
+                            </div>
+                            <div class="preference-option">
+                                <input type="checkbox" id="low-carb" name="preference" value="low-carb">
+                                <label for="low-carb">Χαμηλό σε Υδατάνθρακες</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <span class="filter-label">Δυσκολία:</span>
+                        <div class="filter-options">
+                            <div class="difficulty-filter" onclick="setDifficultyFilter('all')">Όλες</div>
+                            <div class="difficulty-filter easy" onclick="setDifficultyFilter('easy')">Εύκολη</div>
+                            <div class="difficulty-filter medium" onclick="setDifficultyFilter('medium')">Μέτρια</div>
+                            <div class="difficulty-filter hard" onclick="setDifficultyFilter('hard')">Δύσκολη</div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <span class="filter-label">Χρόνος:</span>
+                        <div class="filter-options">
+                            <div class="time-filter" onclick="setTimeFilter('all')">Όλα</div>
+                            <div class="time-filter" onclick="setTimeFilter('quick')">Γρήγορο (< 30')</div>
+                            <div class="time-filter" onclick="setTimeFilter('medium')">Μέτριο (30-60')</div>
+                            <div class="time-filter" onclick="setTimeFilter('long')">Μεγάλο (> 60')</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons-container">
+                    <button onclick="generateRecipes()" class="primary-button">
+                        <i class="fas fa-magic"></i> Δημιουργία Συνταγών
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="recipe-container">
+                <div class="logo">I Cook to Heal</div>
+                <h2>Προτεινόμενες Συνταγές</h2>
+                
+                <div class="sorting-options">
+                    <span class="filter-label">Ταξινόμηση:</span>
+                    <div class="sort-button" onclick="setSortingOption('alphabetical')">Αλφαβητικά</div>
+                    <div class="sort-button" onclick="setSortingOption('prep-time')">Χρόνος Προετοιμασίας</div>
+                    <div class="sort-button" onclick="setSortingOption('cook-time')">Χρόνος Μαγειρέματος</div>
+                    <div class="sort-button" onclick="setSortingOption('difficulty')">Δυσκολία</div>
+                    <div class="sort-button" onclick="setSortingOption('calories')">Θερμίδες</div>
+                </div>
+                
+                <div id="recipes-container" class="recipes-grid"></div>
+                
+                <div class="buttons-container">
+                    <button onclick="restartGenerator()" class="secondary-button">
+                        <i class="fas fa-redo"></i> Νέα Αναζήτηση
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 I Cook to Heal | Συνταγές οντότητα και καρδιακές διατροφής</p>
+        </footer>
     </div>
-    <footer>
-        <p>© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | <i class="fas fa-heart"></i> Ελληνική Κουζίνα</p>
-    </footer>
+    
     <script src="greek_recipes.js"></script>
 </body>
 </html> 
