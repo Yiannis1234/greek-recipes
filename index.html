@@ -109,7 +109,7 @@
 
     <!-- Add visible homepage button -->
     <a href="index.html" class="home-button" id="homeButton">
-        <i class="fas fa-home"></i> Home
+        <i class="fas fa-home"></i>
     </a>
 
     <div class="bg-pattern"></div>
@@ -275,7 +275,7 @@
                 feature2: 'Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια',
                 feature3: 'Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας',
                 startButton: 'Ξεκινήστε',
-                homeButton: 'ΑΡΧΙΚΗ ΣΕΛΙΔΑ / HOME',
+                homeButton: 'ΑΡΧΙΚΗ',
                 ingredientsTitle: 'Επιλέξτε τα Συστατικά σας',
                 addButton: 'Προσθήκη',
                 popularIngredientsTitle: 'Δημοφιλή Συστατικά:',
@@ -300,7 +300,7 @@
                 feature2: 'Sort your recipes with multiple criteria',
                 feature3: 'Over 50 authentic Greek recipes in our database',
                 startButton: 'Get Started',
-                homeButton: 'HOME / ΑΡΧΙΚΗ ΣΕΛΙΔΑ',
+                homeButton: 'HOME',
                 ingredientsTitle: 'Select Your Ingredients',
                 addButton: 'Add',
                 popularIngredientsTitle: 'Popular Ingredients:',
@@ -393,13 +393,6 @@
                 }
             });
             
-            // Update home button text
-            const homeButton = document.getElementById('homeButton');
-            if (homeButton) {
-                // Preserve the icon by setting innerHTML
-                homeButton.innerHTML = `<i class="fas fa-home"></i> ${translations[currentLanguage].homeButton}`;
-            }
-            
             // Update page title
             document.title = translations[currentLanguage].mainTitle;
             
@@ -434,11 +427,11 @@
                     updateLanguage();
                     
                     // Update toggle button text
-                    languageToggle.textContent = currentLanguage === 'el' ? 'CHANGE TO ENGLISH' : 'ΑΛΛΑΓΗ ΣΤΑ ΕΛΛΗΝΙΚΑ';
+                    languageToggle.textContent = currentLanguage === 'el' ? 'English' : 'Ελληνικά';
                 });
                 
-                // Update toggle button text on page load
-                languageToggle.textContent = 'CHANGE TO ENGLISH';
+                // Set initial button text
+                languageToggle.textContent = 'English';
             } else {
                 console.error("Language toggle button not found!");
             }
