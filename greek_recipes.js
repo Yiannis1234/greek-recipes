@@ -1524,4 +1524,66 @@ function playCompletionSound() {
     setInterval(enforceTitleVisibility, 1000);
 })();
 
+// CRITICAL FIX: Add direct text color forcing as first priority
+
+// Immediately execute on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Apply fix immediately
+    forceTextColors();
+    
+    // Keep checking every 250ms to ensure text remains visible
+    setInterval(forceTextColors, 250);
+});
+
+// Function to force all text to be black
+function forceTextColors() {
+    // Get all elements on the page
+    const allElements = document.querySelectorAll('*');
+    
+    // Force each element's text to be black
+    allElements.forEach(el => {
+        el.style.color = '#000000';
+        
+        // Special handling for recipe titles
+        if (el.tagName === 'H3' || 
+            el.classList.contains('recipe-title') || 
+            (el.parentElement && el.parentElement.classList.contains('recipe-content') && !el.textContent.trim().includes(':')) ||
+            (el.parentElement && el.parentElement.classList.contains('recipe-header-text'))) {
+            
+            // Force white background and black text for titles
+            el.style.backgroundColor = '#FFFFFF';
+            el.style.color = '#000000';
+            el.style.fontWeight = '900';
+            el.style.padding = '10px';
+            el.style.margin = '10px auto';
+            el.style.border = '3px solid #000000';
+            el.style.display = 'block';
+            el.style.textAlign = 'center';
+            el.style.boxShadow = '0 3px 6px rgba(0,0,0,0.3)';
+        }
+    });
+    
+    // Specifically target recipe cards
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    recipeCards.forEach(card => {
+        // Find title elements within card
+        const titleElement = card.querySelector('h3') || 
+                            card.querySelector('.recipe-content > div:first-child') ||
+                            card.querySelector('.recipe-header-text > div');
+        
+        if (titleElement) {
+            titleElement.style.backgroundColor = '#FFFFFF';
+            titleElement.style.color = '#000000';
+            titleElement.style.fontWeight = '900';
+            titleElement.style.fontSize = '24px';
+            titleElement.style.padding = '15px';
+            titleElement.style.margin = '10px auto';
+            titleElement.style.border = '3px solid #000000';
+            titleElement.style.display = 'block';
+            titleElement.style.textAlign = 'center';
+            titleElement.style.width = '90%';
+        }
+    });
+}
+
 // Original code continues below... 
