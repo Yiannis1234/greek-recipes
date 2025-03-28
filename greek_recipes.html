@@ -36,82 +36,80 @@
         
         /* IMPROVED Language Toggle Button Styles */
         .language-toggle {
-            position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            transform: none;
             z-index: 9999;
-            background-color: #00AA00 !important; /* Green background */
-            color: #FFFFFF !important; /* White text */
-            border: 3px solid #000000 !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: #4a8745 !important;
+            border: 1px solid #4a8745 !important;
             padding: 8px 15px !important;
-            font-size: 18px !important;
-            font-weight: 700 !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
             cursor: pointer !important;
-            border-radius: 5px !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1px !important;
-            width: 200px !important;
+            border-radius: 20px !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            width: auto !important;
             text-align: center !important;
-            animation: none !important; /* Remove pulsing animation */
+            animation: none !important;
+            transition: all 0.2s ease !important;
         }
         
         .language-toggle:hover {
-            background-color: #008800 !important;
+            background-color: #4a8745 !important;
+            color: white !important;
         }
         
         /* Add home button styling */
         .home-button {
-            position: fixed;
-            top: 80px; /* Position below the language button */
-            left: 50%;
-            transform: translateX(-50%);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transform: none;
             z-index: 9999;
-            background-color: #0000FF !important; /* Blue background */
-            color: #FFFFFF !important;
-            border: 4px solid #000000 !important;
-            padding: 12px 25px !important;
-            font-size: 24px !important;
-            font-weight: 900 !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: #4a8745 !important;
+            border: 1px solid #4a8745 !important;
+            padding: 8px 15px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
             cursor: pointer !important;
-            border-radius: 0px !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1px !important;
-            width: 300px !important;
+            border-radius: 20px !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            width: auto !important;
             text-align: center !important;
-            animation: pulse-blue 2s infinite !important;
+            animation: none !important;
             text-decoration: none !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-        }
-        
-        @keyframes pulse-blue {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
-            100% { transform: translateX(-50%) scale(1); }
+            transition: all 0.2s ease !important;
         }
         
         .home-button:hover {
-            background-color: #0000CC !important;
+            background-color: #4a8745 !important;
+            color: white !important;
         }
         
         /* Add home icon styling */
         .home-button i {
-            margin-right: 10px !important;
-            font-size: 28px !important;
+            margin-right: 8px !important;
+            font-size: 14px !important;
         }
     </style>
 </head>
 <body>
     <!-- Language Toggle Button with improved visibility -->
-    <button class="language-toggle" id="languageToggle">CHANGE TO ENGLISH</button>
+    <button class="language-toggle" id="languageToggle">English</button>
 
     <!-- Add visible homepage button -->
     <a href="index.html" class="home-button" id="homeButton">
-        <i class="fas fa-home"></i> ΑΡΧΙΚΗ ΣΕΛΙΔΑ / HOME
+        <i class="fas fa-home"></i> Home
     </a>
 
     <div class="bg-pattern"></div>
