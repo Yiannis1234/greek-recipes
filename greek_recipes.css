@@ -421,27 +421,118 @@ h2 .fas, h3 .fas, h4 .fas {
     margin-right: 8px;
 }
 
-button, .btn {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* COMPLETE BUTTON REDESIGN WITH MAXIMUM VISIBILITY */
+button, .btn, .primary-button, .secondary-button,
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button, 
+.preference-option {
+    /* Bright white background for maximum contrast */
+    background-color: #FFFFFF !important;
+    /* Very thick black border with green outline for visibility */
+    border: 4px solid #000000 !important;
+    outline: 2px solid #6bb166 !important;
+    /* Black text that's always visible */
+    color: #000000 !important;
+    /* Bold text for better readability */
+    font-weight: bold !important;
+    /* Larger text size */
+    font-size: 18px !important;
+    /* Generous padding for larger click targets */
+    padding: 15px 20px !important;
+    /* Rounded corners for distinction */
+    border-radius: 10px !important;
+    /* Clear drop shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    /* No transitions */
+    transition: none !important;
+    /* Ensure visibility */
+    opacity: 1 !important;
+    /* Proper margin between elements */
+    margin: 8px !important;
+    /* No transform effects that might hide content */
+    transform: none !important;
+    /* No text shadow to keep text clear */
+    text-shadow: none !important;
+    /* Clear letter spacing */
+    letter-spacing: 0.5px !important;
+    /* Fix element height issues */
+    min-height: 50px !important;
+    /* Important display settings */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-button:hover, .btn:hover {
-    background: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+/* Special state for active buttons */
+.difficulty-filter.active, .time-filter.active, .sort-button.active {
+    /* Invert colors for active state */
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 4px solid #FFFFFF !important;
+    outline: 2px solid #6bb166 !important;
+}
+
+/* Hover state - subtle change with no text hiding */
+button:hover, .btn:hover, .primary-button:hover, .secondary-button:hover,
+.ingredient-chip:hover, .difficulty-filter:hover, .time-filter:hover, .sort-button:hover, 
+.preference-option:hover {
+    /* Slightly darker border only */
+    border-color: #6bb166 !important;
+    /* Very subtle shadow change */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
+    /* No color changes or transforms that could hide text */
+    transform: none !important;
+    /* No background color change */
+    background-color: #FFFFFF !important;
+    /* Text stays black */
+    color: #000000 !important;
+}
+
+/* Handle active button hover states */
+.difficulty-filter.active:hover, .time-filter.active:hover, .sort-button.active:hover {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Recipe categories for better visibility */
+.recipe-categories span {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    padding: 5px 10px !important;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    display: inline-block !important;
+    margin: 3px !important;
+}
+
+/* Reset ALL transitions and animations site-wide */
+*, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Recipe meta items with maximum visibility */
+.meta-item, .recipe-meta {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 5px !important;
+    padding: 8px !important;
+    margin: 5px !important;
+    font-weight: bold !important;
+}
+
+/* Headers with maximum visibility */
+h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
+    padding: 10px !important;
+    border: 2px solid #000000 !important;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    display: inline-block !important;
+    margin: 10px !important;
+    text-shadow: none !important;
 }
 
 .logo .fas {
