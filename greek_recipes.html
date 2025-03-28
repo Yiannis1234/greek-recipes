@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I Cook to Heal - Συνταγές με Ελληνικά Υλικά</title>
+    <title>Έξυπνος Γεννήτης Ελληνικών Συνταγών</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="greek_recipes.css">
@@ -33,34 +33,58 @@
             width: 90% !important;
             display: block !important;
         }
+        
+        /* Language Toggle Button Styles */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #FFFFFF !important;
+            color: #000000 !important;
+            border: 3px solid #000000 !important;
+            padding: 10px 15px !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .language-toggle:hover {
+            background-color: #F0F0F0 !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Language Toggle Button -->
+    <button class="language-toggle" id="languageToggle">English / Ελληνικά</button>
+
     <div class="bg-pattern"></div>
     <div class="container">
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="screen active">
             <div class="recipe-container">
                 <div class="logo">I Cook to Heal</div>
-                <h1>Συνταγές οντότητα και καρδιακές διατροφής</h1>
-                <p>Καλωσήρθατε στη γεννήτρια συνταγών μας. Επιλέξτε τα συστατικά που έχετε διαθέσιμα και θα σας προτείνουμε αυθεντικές ελληνικές συνταγές.</p>
+                <h1 id="mainTitle">Συνταγές οντότητα και καρδιακές διατροφής</h1>
+                <p id="featureDesc">Καλωσήρθατε στη γεννήτρια συνταγών μας. Επιλέξτε τα συστατικά που έχετε διαθέσιμα και θα σας προτείνουμε αυθεντικές ελληνικές συνταγές.</p>
                 
                 <div class="features-list">
                     <div class="feature-item" style="--item-index: 0;">
                         <i class="fas fa-filter"></i>
-                        <span>Φιλτράρετε τις συνταγές βάσει διατροφικών προτιμήσεων</span>
+                        <p id="feature1">Φιλτράρετε τις συνταγές βάσει διατροφικών προτιμήσεων</p>
                     </div>
                     <div class="feature-item" style="--item-index: 1;">
                         <i class="fas fa-sort"></i>
-                        <span>Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια</span>
+                        <p id="feature2">Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια</p>
                     </div>
                     <div class="feature-item" style="--item-index: 2;">
                         <i class="fas fa-book-open"></i>
-                        <span>Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας</span>
+                        <p id="feature3">Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας</p>
                     </div>
                 </div>
                 
-                <button id="start-button" class="btn" onclick="startRecipeGenerator()">
+                <button id="start-button" class="btn primary-button" id="startButton">
                     <i class="fas fa-utensils"></i> Ξεκινήστε
                 </button>
             </div>
@@ -70,7 +94,7 @@
         <div id="input-screen" class="screen">
             <div class="recipe-container">
                 <div class="logo">I Cook to Heal</div>
-                <h2>Επιλέξτε Συστατικά & Προτιμήσεις</h2>
+                <h2 class="ingredients-title">Επιλέξτε Συστατικά & Προτιμήσεις</h2>
                 
                 <div class="ingredients-section">
                     <h3><i class="fas fa-carrot"></i> Επιλέξτε Συστατικά</h3>
@@ -79,7 +103,7 @@
                     <div class="input-group">
                         <input type="text" id="ingredient-input" list="ingredients-list" placeholder="Πληκτρολογήστε ένα συστατικό..." autocomplete="off">
                         <datalist id="ingredients-list"></datalist>
-                        <button onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
+                        <button class="add-button" onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
                     </div>
                     
                     <div class="quick-ingredients">
@@ -182,9 +206,7 @@
             </div>
         </div>
         
-        <footer>
-            <p>&copy; 2024 I Cook to Heal | Συνταγές οντότητα και καρδιακές διατροφής</p>
-        </footer>
+        <footer>© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | Ελληνική Κουζίνα</footer>
     </div>
     
     <script src="greek_recipes.js"></script>

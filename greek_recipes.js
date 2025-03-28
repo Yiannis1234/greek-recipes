@@ -959,6 +959,161 @@ let difficultyFilter = "all";
 let timeFilter = "all";
 let sortingOption = "default";
 
+// Language Toggle Functionality
+let currentLanguage = 'el'; // Default language is Greek (el)
+
+// Language translations
+const translations = {
+    el: {
+        mainTitle: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
+        featureDesc: 'Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!',
+        feature1: 'Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος',
+        feature2: 'Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια',
+        feature3: 'Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας',
+        startButton: 'Ξεκινήστε',
+        ingredientsTitle: 'Επιλέξτε τα Συστατικά σας',
+        addButton: 'Προσθήκη',
+        popularIngredientsTitle: 'Δημοφιλή Συστατικά:',
+        selectedIngredientsTitle: 'Επιλεγμένα Συστατικά:',
+        preferencesTitle: 'Προτιμήσεις και Φίλτρα',
+        dietaryPreferencesTitle: 'Διατροφικές Προτιμήσεις',
+        vegetarian: 'Χορτοφαγική',
+        vegan: 'Νηστίσιμη',
+        glutenFree: 'Χωρίς γλουτένη',
+        lowCarb: 'Χαμηλή σε υδατάνθρακες',
+        filtersTitle: 'Φίλτρα',
+        difficultyLabel: 'Δυσκολία:',
+        difficultyAll: 'Όλες',
+        difficultyEasy: 'Εύκολη',
+        difficultyMedium: 'Μέτρια',
+        difficultyHard: 'Δύσκολη',
+        cookingTimeLabel: 'Χρόνος Μαγειρέματος:',
+        cookingTimeAll: 'Όλοι',
+        cookingTimeLessThan30: '< 30 λεπτά',
+        cookingTime30To60: '30-60 λεπτά',
+        cookingTimeMoreThan60: '> 60 λεπτά',
+        searchButton: 'Αναζήτηση Συνταγών',
+        matchingRecipesTitle: 'Συνταγές που Βρέθηκαν',
+        defaultSort: 'Προεπιλογή',
+        sortAlphabetically: 'Αλφαβητικά',
+        sortPrepTime: 'Χρόνος Προετοιμασίας',
+        sortCookingTime: 'Χρόνος Μαγειρέματος',
+        sortDifficulty: 'Δυσκολία',
+        sortCalories: 'Θερμίδες',
+        newSearchButton: 'Νέα Αναζήτηση',
+        noRecipesFound: 'Δεν βρέθηκαν συνταγές. Προσπαθήστε με διαφορετικά συστατικά ή φίλτρα.',
+        ingredientsLabel: 'Συστατικά:',
+        instructionsLabel: 'Οδηγίες:',
+        nutritionLabel: 'Διατροφική αξία:',
+        prepTimeLabel: 'Χρόνος προετοιμασίας:',
+        cookingTimeLabel: 'Χρόνος μαγειρέματος:',
+        difficultyLabel: 'Δυσκολία:',
+        footer: '© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | Ελληνική Κουζίνα'
+    },
+    en: {
+        mainTitle: 'Smart Greek Recipe Generator',
+        featureDesc: 'Discover new Greek recipes based on your ingredients!',
+        feature1: 'Filter recipes by difficulty and cooking time',
+        feature2: 'Sort your recipes with multiple criteria',
+        feature3: 'Over 50 authentic Greek recipes in our database',
+        startButton: 'Get Started',
+        ingredientsTitle: 'Select Your Ingredients',
+        addButton: 'Add',
+        popularIngredientsTitle: 'Popular Ingredients:',
+        selectedIngredientsTitle: 'Selected Ingredients:',
+        preferencesTitle: 'Preferences and Filters',
+        dietaryPreferencesTitle: 'Dietary Preferences',
+        vegetarian: 'Vegetarian',
+        vegan: 'Vegan',
+        glutenFree: 'Gluten-Free',
+        lowCarb: 'Low-Carb',
+        filtersTitle: 'Filters',
+        difficultyLabel: 'Difficulty:',
+        difficultyAll: 'All',
+        difficultyEasy: 'Easy',
+        difficultyMedium: 'Medium',
+        difficultyHard: 'Hard',
+        cookingTimeLabel: 'Cooking Time:',
+        cookingTimeAll: 'All',
+        cookingTimeLessThan30: '< 30 minutes',
+        cookingTime30To60: '30-60 minutes',
+        cookingTimeMoreThan60: '> 60 minutes',
+        searchButton: 'Search Recipes',
+        matchingRecipesTitle: 'Recipes Found',
+        defaultSort: 'Default',
+        sortAlphabetically: 'Alphabetically',
+        sortPrepTime: 'Preparation Time',
+        sortCookingTime: 'Cooking Time',
+        sortDifficulty: 'Difficulty',
+        sortCalories: 'Calories',
+        newSearchButton: 'New Search',
+        noRecipesFound: 'No recipes found. Try different ingredients or filters.',
+        ingredientsLabel: 'Ingredients:',
+        instructionsLabel: 'Instructions:',
+        nutritionLabel: 'Nutrition:',
+        prepTimeLabel: 'Preparation time:',
+        cookingTimeLabel: 'Cooking time:',
+        difficultyLabel: 'Difficulty:',
+        footer: '© 2024 Smart Greek Recipe Generator | Greek Cuisine'
+    }
+};
+
+// Function to update UI text based on selected language
+function updateLanguage() {
+    const elementsToUpdate = {
+        'mainTitle': translations[currentLanguage].mainTitle,
+        'featureDesc': translations[currentLanguage].featureDesc,
+        'feature1': translations[currentLanguage].feature1,
+        'feature2': translations[currentLanguage].feature2,
+        'feature3': translations[currentLanguage].feature3,
+        'startButton': translations[currentLanguage].startButton,
+        // Add more elements as needed
+    };
+
+    // Update each element's text content
+    for (const [id, text] of Object.entries(elementsToUpdate)) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = text;
+        }
+    }
+
+    // Update other elements with class selectors
+    document.querySelectorAll('.ingredients-title').forEach(el => {
+        el.textContent = translations[currentLanguage].ingredientsTitle;
+    });
+
+    document.querySelectorAll('.add-button').forEach(el => {
+        el.textContent = translations[currentLanguage].addButton;
+    });
+
+    // Update page title
+    document.title = translations[currentLanguage].mainTitle;
+
+    // Update footer
+    document.querySelector('footer').textContent = translations[currentLanguage].footer;
+}
+
+// Add event listener to language toggle button
+document.addEventListener('DOMContentLoaded', function() {
+    const languageToggle = document.getElementById('languageToggle');
+    if (languageToggle) {
+        languageToggle.addEventListener('click', function() {
+            // Toggle language
+            currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+            
+            // Update UI text
+            updateLanguage();
+            
+            // Update toggle button text
+            languageToggle.textContent = currentLanguage === 'el' ? 'English / Ελληνικά' : 'Ελληνικά / English';
+        });
+    }
+
+    // Initialize with default language
+    updateLanguage();
+});
+
 // Initialize the app by setting up event listeners
 function initApp() {
     // Add welcome screen animation
