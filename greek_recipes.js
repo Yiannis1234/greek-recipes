@@ -1456,4 +1456,72 @@ function playSelectionSound() {
 function playCompletionSound() {
     const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
     audio.play().catch(() => {});
-} 
+}
+
+// Add immediate execution function to force recipe title visibility
+(function fixRecipeTitles() {
+    // Execute on page load and after recipe search/display
+    document.addEventListener('DOMContentLoaded', enforceTitleVisibility);
+    
+    function enforceTitleVisibility() {
+        // Set timeout to allow recipe cards to render
+        setTimeout(() => {
+            // Target all recipe titles and force them to be visible
+            const recipeTitles = document.querySelectorAll('.recipe-card h3, .recipe-header-text h3, .recipe-card .recipe-content > div:first-child');
+            
+            recipeTitles.forEach(title => {
+                // Force title to be visible
+                if (!title.textContent.trim()) {
+                    // Find the recipe name from parent elements
+                    const recipeCard = title.closest('.recipe-card');
+                    if (recipeCard) {
+                        const recipeName = recipeCard.dataset.name || recipeCard.querySelector('[data-name]')?.dataset.name;
+                        if (recipeName) {
+                            title.textContent = recipeName;
+                        }
+                    }
+                }
+                
+                // Apply critical styles directly
+                Object.assign(title.style, {
+                    color: 'black',
+                    backgroundColor: 'white',
+                    border: '3px solid black',
+                    padding: '15px',
+                    margin: '10px auto',
+                    display: 'block',
+                    width: '90%',
+                    textAlign: 'center',
+                    fontWeight: '900',
+                    fontSize: '24px',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
+                });
+            });
+        }, 100);
+    }
+    
+    // Force execution when recipes are searched
+    const originalFindMatchingRecipes = window.findMatchingRecipes;
+    if (originalFindMatchingRecipes) {
+        window.findMatchingRecipes = function() {
+            const result = originalFindMatchingRecipes.apply(this, arguments);
+            enforceTitleVisibility();
+            return result;
+        };
+    }
+    
+    // Force execution when screen changes
+    const originalShowScreen = window.showScreen;
+    if (originalShowScreen) {
+        window.showScreen = function() {
+            const result = originalShowScreen.apply(this, arguments);
+            enforceTitleVisibility();
+            return result;
+        };
+    }
+    
+    // Set interval to repeatedly check for and fix titles
+    setInterval(enforceTitleVisibility, 1000);
+})();
+
+// Original code continues below... 
