@@ -1594,4 +1594,59 @@ h4 {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
+}
+
+/* Fix recipe title visibility */
+.recipe-card h3, .recipe-header-text h3, .recipes-grid .recipe-card h3 {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+    border: none !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    display: block !important;
+    text-align: center !important;
+    letter-spacing: 1px !important;
+}
+
+.recipe-header-text {
+    background-color: transparent !important;
+    border: 3px solid #000000 !important;
+    padding: 5px !important;
+}
+
+/* Fix box title contrast for recipe cards */
+.recipe-card {
+    border: 3px solid #000000 !important;
+}
+
+.recipe-card .recipe-header, .recipe-card .recipe-content {
+    background-color: #FFFFFF !important;
+}
+
+/* Force recipe title to be visible */
+.recipe-title {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    background-color: #FFFFFF !important;
+    padding: 10px !important;
+    border: 2px solid #000000 !important;
+    margin: 10px auto !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Special override for titles inside recipe boxes */
+.recipe-card h3 {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    border: 2px solid #000000 !important;
+    padding: 10px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    display: block !important;
 } 
