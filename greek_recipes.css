@@ -1649,4 +1649,63 @@ h4 {
     margin: 10px auto !important;
     width: 90% !important;
     display: block !important;
+}
+
+/* EMERGENCY FIX FOR RECIPE CARD TITLES - DIRECTLY TARGET RECIPE TITLES */
+.recipe-card h3, 
+.recipe-header-text h3, 
+.recipes-grid .recipe-card h3,
+.food-emoji-large + div,
+.recipe-title {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 28px !important;
+    background-color: transparent !important; 
+    text-shadow: none !important;
+    border: none !important;
+    padding: 15px !important;
+    display: block !important;
+    text-align: center !important;
+    letter-spacing: 1px !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Remove any whitespace, margins, paddings from title containers */
+.recipe-header-text {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Force recipe container elements to have dark text */
+.recipe-card, .recipe-card *,
+.recipes-grid .recipe-card, .recipes-grid .recipe-card * {
+    color: #000000 !important;
+}
+
+/* Ensure recipe names are very visible */
+.recipe-name, h2.recipe-name, h3.recipe-name {
+    color: #000000 !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: center !important;
+}
+
+/* Style actual empty box shown in screenshot */
+.food-emoji-large + div,
+.recipes-grid .recipe-card .recipe-content > div,
+.recipe-header > div {
+    color: #000000 !important;
+    font-size: 30px !important;
+    font-weight: 900 !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: center !important;
+    margin: 10px 0 !important;
+    padding: 0 !important;
 } 
