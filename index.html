@@ -220,5 +220,82 @@
         <p>© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | <i class="fas fa-heart"></i> Ελληνική Κουζίνα</p>
     </footer>
     <script src="greek_recipes.js"></script>
+    
+    <!-- Add language toggle functionality directly in index.html -->
+    <script>
+        // Language Toggle Functionality
+        let currentLanguage = 'el'; // Default language is Greek (el)
+        
+        // Language translations
+        const translations = {
+            el: {
+                mainTitle: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
+                featureDesc: 'Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!',
+                feature1: 'Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος',
+                feature2: 'Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια',
+                feature3: 'Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας',
+                startButton: 'Ξεκινήστε',
+                footer: '© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | Ελληνική Κουζίνα'
+            },
+            en: {
+                mainTitle: 'Smart Greek Recipe Generator',
+                featureDesc: 'Discover new Greek recipes based on your ingredients!',
+                feature1: 'Filter recipes by difficulty and cooking time',
+                feature2: 'Sort your recipes with multiple criteria',
+                feature3: 'Over 50 authentic Greek recipes in our database',
+                startButton: 'Get Started',
+                footer: '© 2024 Smart Greek Recipe Generator | Greek Cuisine'
+            }
+        };
+        
+        // Function to update UI text based on selected language
+        function updateLanguage() {
+            const elementsToUpdate = {
+                'mainTitle': translations[currentLanguage].mainTitle,
+                'featureDesc': translations[currentLanguage].featureDesc,
+                'feature1': translations[currentLanguage].feature1,
+                'feature2': translations[currentLanguage].feature2,
+                'feature3': translations[currentLanguage].feature3,
+                'startButton': translations[currentLanguage].startButton
+            };
+            
+            // Update each element's text content
+            for (const [id, text] of Object.entries(elementsToUpdate)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = text;
+                }
+            }
+            
+            // Update page title
+            document.title = translations[currentLanguage].mainTitle;
+            
+            // Update footer
+            const footer = document.querySelector('footer');
+            if (footer) {
+                footer.textContent = translations[currentLanguage].footer;
+            }
+        }
+        
+        // Set up language toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find the language toggle button
+            const languageToggle = document.getElementById('languageToggle');
+            
+            if (languageToggle) {
+                // Add click event listener
+                languageToggle.addEventListener('click', function() {
+                    // Toggle language
+                    currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+                    
+                    // Update UI text
+                    updateLanguage();
+                    
+                    // Update toggle button text
+                    languageToggle.textContent = currentLanguage === 'el' ? 'CHANGE LANGUAGE / ΑΛΛΑΓΗ ΓΛΩΣΣΑΣ' : 'ΑΛΛΑΓΗ ΓΛΩΣΣΑΣ / CHANGE LANGUAGE';
+                });
+            }
+        });
+    </script>
 </body>
 </html> 
