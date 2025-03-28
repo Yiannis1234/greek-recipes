@@ -1775,4 +1775,30 @@ h4 {
     text-align: center !important;
     font-weight: 900 !important;
     display: block !important;
+}
+
+/* Quick Ingredients Grid */
+.quick-ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quick-ingredient {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #4a8745;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #333;
+}
+
+.quick-ingredient:hover {
+    background-color: #4a8745;
+    color: white;
+    transform: translateY(-2px);
 } 

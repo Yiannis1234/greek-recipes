@@ -153,22 +153,40 @@
                     <p>Προσθέστε τα συστατικά που έχετε διαθέσιμα ή που θα θέλατε να περιλαμβάνονται στη συνταγή σας.</p>
                     
                     <div class="input-group">
-                        <input type="text" id="ingredient-input" list="ingredients-list" placeholder="Πληκτρολογήστε ένα συστατικό..." autocomplete="off">
+                        <input type="text" id="ingredient-input" placeholder="Πληκτρολογήστε ένα συστατικό..." list="ingredients-list">
                         <datalist id="ingredients-list"></datalist>
-                        <button class="add-button" onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
+                        <button id="addIngredientBtn" class="add-button">
+                            <i class="fas fa-plus"></i> Προσθήκη
+                        </button>
                     </div>
                     
                     <div class="quick-ingredients">
                         <h4>Δημοφιλή Συστατικά:</h4>
-                        <div class="ingredient-chips">
-                            <div class="ingredient-chip" onclick="quickAddIngredient('φέτα')">φέτα</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('ελαιόλαδο')">ελαιόλαδο</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('ντομάτες')">ντομάτες</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('πατάτες')">πατάτες</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('κρεμμύδι')">κρεμμύδι</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('σκόρδο')">σκόρδο</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('κιμάς')">κιμάς</div>
-                            <div class="ingredient-chip" onclick="quickAddIngredient('μελιτζάνες')">μελιτζάνες</div>
+                        <div class="quick-ingredients-grid">
+                            <div class="quick-ingredient" data-ingredient="ντομάτες">
+                                <span>🍅 Ντομάτες</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="φέτα">
+                                <span>🧀 Φέτα</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="ελιές">
+                                <span>🫒 Ελιές</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="πατάτες">
+                                <span>🥔 Πατάτες</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="κιμάς">
+                                <span>🥩 Κιμάς</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="γιαούρτι">
+                                <span>🥛 Γιαούρτι</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="μέλι">
+                                <span>🍯 Μέλι</span>
+                            </div>
+                            <div class="quick-ingredient" data-ingredient="σπανάκι">
+                                <span>🥬 Σπανάκι</span>
+                            </div>
                         </div>
                     </div>
                     
@@ -206,27 +224,27 @@
                     
                     <div class="filter-container">
                         <span class="filter-label">Δυσκολία:</span>
-                        <div class="filter-options">
-                            <div class="difficulty-filter" onclick="setDifficultyFilter('all')">Όλες</div>
-                            <div class="difficulty-filter easy" onclick="setDifficultyFilter('easy')">Εύκολη</div>
-                            <div class="difficulty-filter medium" onclick="setDifficultyFilter('medium')">Μέτρια</div>
-                            <div class="difficulty-filter hard" onclick="setDifficultyFilter('hard')">Δύσκολη</div>
+                        <div class="filter-buttons">
+                            <div class="filter-button difficulty-filter active" data-difficulty="all">Όλες</div>
+                            <div class="filter-button difficulty-filter" data-difficulty="easy">Εύκολη</div>
+                            <div class="filter-button difficulty-filter" data-difficulty="medium">Μέτρια</div>
+                            <div class="filter-button difficulty-filter" data-difficulty="hard">Δύσκολη</div>
                         </div>
                     </div>
                     
                     <div class="filter-container">
                         <span class="filter-label">Χρόνος:</span>
-                        <div class="filter-options">
-                            <div class="time-filter" onclick="setTimeFilter('all')">Όλα</div>
-                            <div class="time-filter" onclick="setTimeFilter('quick')">Γρήγορο (< 30')</div>
-                            <div class="time-filter" onclick="setTimeFilter('medium')">Μέτριο (30-60')</div>
-                            <div class="time-filter" onclick="setTimeFilter('long')">Μεγάλο (> 60')</div>
+                        <div class="filter-buttons">
+                            <div class="filter-button time-filter active" data-time="all">Όλα</div>
+                            <div class="filter-button time-filter" data-time="quick">Γρήγορο (< 30')</div>
+                            <div class="filter-button time-filter" data-time="medium">Μέτριο (30-60')</div>
+                            <div class="filter-button time-filter" data-time="long">Μεγάλο (> 60')</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="buttons-container">
-                    <button onclick="generateRecipes()" class="primary-button">
+                    <button id="generateRecipesBtn" class="primary-button">
                         <i class="fas fa-magic"></i> Δημιουργία Συνταγών
                     </button>
                 </div>
@@ -241,17 +259,17 @@
                 
                 <div class="sorting-options">
                     <span class="filter-label">Ταξινόμηση:</span>
-                    <div class="sort-button" onclick="setSortingOption('alphabetical')">Αλφαβητικά</div>
-                    <div class="sort-button" onclick="setSortingOption('prep-time')">Χρόνος Προετοιμασίας</div>
-                    <div class="sort-button" onclick="setSortingOption('cook-time')">Χρόνος Μαγειρέματος</div>
-                    <div class="sort-button" onclick="setSortingOption('difficulty')">Δυσκολία</div>
-                    <div class="sort-button" onclick="setSortingOption('calories')">Θερμίδες</div>
+                    <div class="sort-button" data-sort="alphabetical">Αλφαβητικά</div>
+                    <div class="sort-button" data-sort="prep-time">Χρόνος Προετοιμασίας</div>
+                    <div class="sort-button" data-sort="cook-time">Χρόνος Μαγειρέματος</div>
+                    <div class="sort-button" data-sort="difficulty">Δυσκολία</div>
+                    <div class="sort-button" data-sort="calories">Θερμίδες</div>
                 </div>
                 
                 <div id="recipes-container" class="recipes-grid"></div>
                 
                 <div class="buttons-container">
-                    <button onclick="restartGenerator()" class="secondary-button">
+                    <button id="restartBtn" class="secondary-button">
                         <i class="fas fa-redo"></i> Νέα Αναζήτηση
                     </button>
                 </div>

@@ -2066,3 +2066,131 @@ function findMatchingRecipes() {
     
     return filteredRecipes;
 }
+
+// At the bottom of the file, add event listener setup
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+    
+    // Setup generate recipes button event listener
+    const generateRecipesBtn = document.getElementById('generateRecipesBtn');
+    if (generateRecipesBtn) {
+        console.log("Found generate recipes button, adding event listener");
+        generateRecipesBtn.addEventListener('click', function(event) {
+            console.log("Generate recipes button clicked");
+            event.preventDefault();
+            generateRecipes();
+        });
+    } else {
+        console.error("Could not find generate recipes button!");
+    }
+    
+    // Setup other click handlers
+    console.log("Setting up other UI elements");
+    setupUIEventHandlers();
+});
+
+// Function to set up other event handlers
+function setupUIEventHandlers() {
+    // Add ingredient button
+    const addButton = document.getElementById('addIngredientBtn');
+    if (addButton) {
+        console.log("Found add ingredient button, adding event listener");
+        addButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            addIngredient();
+        });
+    } else {
+        console.error("Could not find add ingredient button!");
+    }
+    
+    // Also add enter key press event to input field
+    const ingredientInput = document.getElementById('ingredient-input');
+    if (ingredientInput) {
+        ingredientInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addIngredient();
+            }
+        });
+    }
+    
+    // New search button
+    const restartBtn = document.getElementById('restartBtn');
+    if (restartBtn) {
+        console.log("Found restart button, adding event listener");
+        restartBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            restartGenerator();
+        });
+    } else {
+        console.error("Could not find restart button!");
+    }
+    
+    // Difficulty filter buttons
+    document.querySelectorAll('.difficulty-filter').forEach(button => {
+        button.addEventListener('click', function() {
+            console.log("Difficulty filter clicked:", this.getAttribute('data-difficulty'));
+            const difficulty = this.getAttribute('data-difficulty');
+            if (difficulty) {
+                setDifficultyFilter(difficulty);
+            }
+        });
+    });
+    
+    // Time filter buttons
+    document.querySelectorAll('.time-filter').forEach(button => {
+        button.addEventListener('click', function() {
+            console.log("Time filter clicked:", this.getAttribute('data-time'));
+            const time = this.getAttribute('data-time');
+            if (time) {
+                setTimeFilter(time);
+            }
+        });
+    });
+    
+    // Sort buttons
+    document.querySelectorAll('.sort-button').forEach(button => {
+        button.addEventListener('click', function() {
+            console.log("Sort button clicked:", this.getAttribute('data-sort'));
+            const sortOption = this.getAttribute('data-sort');
+            if (sortOption) {
+                setSortingOption(sortOption);
+            }
+        });
+    });
+    
+    // Start button
+    const startButton = document.getElementById('start-button');
+    if (startButton) {
+        console.log("Found start button, adding event listener");
+        startButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            startRecipeGenerator();
+        });
+    } else {
+        console.error("Could not find start button!");
+    }
+    
+    // Quick ingredient buttons
+    document.querySelectorAll('.quick-ingredient').forEach(button => {
+        button.addEventListener('click', function() {
+            const ingredient = this.getAttribute('data-ingredient');
+            if (ingredient) {
+                quickAddIngredient(ingredient);
+            }
+        });
+    });
+    
+    // Handle input-screen's keypress events
+    document.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter' && document.getElementById('input-screen').classList.contains('active')) {
+            if (document.activeElement === ingredientInput) {
+                event.preventDefault();
+                addIngredient();
+            } else {
+                event.preventDefault();
+                generateRecipes();
+            }
+        }
+    });
+}
