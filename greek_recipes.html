@@ -34,31 +34,43 @@
             display: block !important;
         }
         
-        /* Language Toggle Button Styles */
+        /* IMPROVED Language Toggle Button Styles */
         .language-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: #FFFFFF !important;
-            color: #000000 !important;
-            border: 3px solid #000000 !important;
-            padding: 10px 15px !important;
-            font-size: 18px !important;
-            font-weight: bold !important;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            background-color: #FF0000 !important; /* Bright red background */
+            color: #FFFFFF !important; /* White text */
+            border: 4px solid #000000 !important;
+            padding: 12px 25px !important;
+            font-size: 24px !important;
+            font-weight: 900 !important;
             cursor: pointer !important;
-            border-radius: 8px !important;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+            border-radius: 0px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            width: 300px !important;
+            text-align: center !important;
+            animation: pulse 2s infinite !important;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
         }
         
         .language-toggle:hover {
-            background-color: #F0F0F0 !important;
+            background-color: #D10000 !important;
         }
     </style>
 </head>
 <body>
-    <!-- Language Toggle Button -->
-    <button class="language-toggle" id="languageToggle">English / Ελληνικά</button>
+    <!-- Language Toggle Button with improved visibility -->
+    <button class="language-toggle" id="languageToggle">CHANGE LANGUAGE / ΑΛΛΑΓΗ ΓΛΩΣΣΑΣ</button>
 
     <div class="bg-pattern"></div>
     <div class="container">
