@@ -1586,4 +1586,92 @@ function forceTextColors() {
     });
 }
 
+// SUPER EMERGENCY FIX - Directly target empty white boxes in recipe cards
+function fillEmptyBoxes() {
+    // Find all recipe cards
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    
+    recipeCards.forEach(card => {
+        // Find the specific empty white box (will look like an empty div with a border)
+        const emptyBoxes = card.querySelectorAll('div:empty, div:not(:has(*)):not(:empty)');
+        
+        // Check recipe title/name from data attributes or nearby elements
+        let recipeName = '';
+        if (card.dataset && card.dataset.name) {
+            recipeName = card.dataset.name;
+        } else {
+            // Try to find recipe name by searching through child elements' text content
+            const possibleNameElements = card.querySelectorAll('h3, .recipe-name, .recipe-title');
+            for (const element of possibleNameElements) {
+                if (element.textContent && element.textContent.trim()) {
+                    recipeName = element.textContent.trim();
+                    break;
+                }
+            }
+            
+            // If still not found, try to extract from attributes
+            if (!recipeName) {
+                const recipeContent = card.querySelector('.recipe-content');
+                if (recipeContent) {
+                    recipeName = recipeContent.getAttribute('data-recipe-name') || 
+                                card.getAttribute('data-recipe-name') || 
+                                card.getAttribute('id') || 
+                                'Ελληνική Συνταγή'; // Default generic name
+                }
+            }
+        }
+        
+        // Get recipe data from the full recipes array
+        const recipeData = window.recipes.find(r => {
+            // Handle various naming formats
+            return r.name === recipeName || 
+                   r.name.toLowerCase() === recipeName.toLowerCase() ||
+                   recipeName.includes(r.name) ||
+                   r.name.includes(recipeName);
+        });
+        
+        if (recipeData) {
+            recipeName = recipeData.name; // Use the proper name from the recipes array
+        }
+        
+        // Apply the name to all empty boxes
+        emptyBoxes.forEach(box => {
+            // Check if this looks like a title box (rectangular, near top of card)
+            if (!box.textContent.trim() || box.textContent === "undefined") {
+                // Force recipe name in this box
+                box.textContent = recipeName;
+                box.style.color = '#000000';
+                box.style.fontWeight = '900';
+                box.style.fontSize = '28px';
+                box.style.backgroundColor = '#FFFFFF';
+                box.style.padding = '15px';
+                box.style.margin = '10px auto';
+                box.style.border = '3px solid #000000';
+                box.style.display = 'block';
+                box.style.textAlign = 'center';
+                box.style.width = '90%';
+                box.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+            }
+        });
+    });
+}
+
+// Run the empty box filler function on page load and at intervals
+document.addEventListener('DOMContentLoaded', function() {
+    // Run immediately and every half second to ensure empty boxes are filled
+    fillEmptyBoxes();
+    setInterval(fillEmptyBoxes, 500);
+    
+    // Also run when new recipes are displayed
+    const originalDisplayRecipes = window.displayRecipes;
+    if (originalDisplayRecipes) {
+        window.displayRecipes = function() {
+            const result = originalDisplayRecipes.apply(this, arguments);
+            setTimeout(fillEmptyBoxes, 100);
+            setTimeout(fillEmptyBoxes, 500);
+            return result;
+        };
+    }
+});
+
 // Original code continues below... 
