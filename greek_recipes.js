@@ -1060,38 +1060,113 @@ const translations = {
 
 // Function to update UI text based on selected language
 function updateLanguage() {
-    const elementsToUpdate = {
-        'mainTitle': translations[currentLanguage].mainTitle,
-        'featureDesc': translations[currentLanguage].featureDesc,
-        'feature1': translations[currentLanguage].feature1,
-        'feature2': translations[currentLanguage].feature2,
-        'feature3': translations[currentLanguage].feature3,
-        'startButton': translations[currentLanguage].startButton,
-        // Add more elements as needed
-    };
-
-    // Update each element's text content
-    for (const [id, text] of Object.entries(elementsToUpdate)) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.textContent = text;
-        }
-    }
-
-    // Update other elements with class selectors
-    document.querySelectorAll('.ingredients-title').forEach(el => {
-        el.textContent = translations[currentLanguage].ingredientsTitle;
-    });
-
-    document.querySelectorAll('.add-button').forEach(el => {
-        el.textContent = translations[currentLanguage].addButton;
-    });
-
-    // Update page title
-    document.title = translations[currentLanguage].mainTitle;
-
+    console.log("Updating language to:", currentLanguage);
+    
+    // Update element texts by ID
+    document.getElementById('mainTitle').textContent = translations[currentLanguage].mainTitle;
+    document.getElementById('featureDesc').textContent = translations[currentLanguage].featureDesc;
+    document.getElementById('feature1').textContent = translations[currentLanguage].feature1;
+    document.getElementById('feature2').textContent = translations[currentLanguage].feature2;
+    document.getElementById('feature3').textContent = translations[currentLanguage].feature3;
+    document.getElementById('start-button').innerHTML = '<i class="fas fa-utensils"></i> ' + translations[currentLanguage].startButton;
+    
+    // Update header texts
+    const ingredientsTitle = document.querySelector('.ingredients-title');
+    if (ingredientsTitle) ingredientsTitle.textContent = translations[currentLanguage].ingredientsTitle;
+    
+    const ingredientsSectionH3 = document.querySelector('.ingredients-section h3');
+    if (ingredientsSectionH3) ingredientsSectionH3.innerHTML = '<i class="fas fa-carrot"></i> ' + translations[currentLanguage].selectIngredients;
+    
+    const ingredientsSectionP = document.querySelector('.ingredients-section p');
+    if (ingredientsSectionP) ingredientsSectionP.textContent = translations[currentLanguage].ingredientsPrompt;
+    
+    const preferencesH3 = document.querySelector('.preferences-section h3');
+    if (preferencesH3) preferencesH3.innerHTML = '<i class="fas fa-sliders-h"></i> ' + translations[currentLanguage].preferences;
+    
+    const preferencesP = document.querySelector('.preferences-section p');
+    if (preferencesP) preferencesP.textContent = translations[currentLanguage].preferencesPrompt;
+    
+    // Update input placeholder
+    const ingredientInput = document.getElementById('ingredient-input');
+    if (ingredientInput) ingredientInput.placeholder = translations[currentLanguage].ingredientPlaceholder;
+    
+    // Update buttons
+    const addButton = document.querySelector('.add-button');
+    if (addButton) addButton.innerHTML = '<i class="fas fa-plus"></i> ' + translations[currentLanguage].addIngredient;
+    
+    const primaryButton = document.querySelector('.primary-button');
+    if (primaryButton) primaryButton.innerHTML = '<i class="fas fa-magic"></i> ' + translations[currentLanguage].generateRecipes;
+    
+    const secondaryButton = document.querySelector('.secondary-button');
+    if (secondaryButton) secondaryButton.innerHTML = '<i class="fas fa-redo"></i> ' + translations[currentLanguage].newSearch;
+    
+    // Update section titles/labels
+    const popularIngredientsH4 = document.querySelector('.quick-ingredients h4');
+    if (popularIngredientsH4) popularIngredientsH4.textContent = translations[currentLanguage].popularIngredients;
+    
+    const selectedIngredientsH4 = document.querySelector('.selected-ingredients-container h4');
+    if (selectedIngredientsH4) selectedIngredientsH4.textContent = translations[currentLanguage].selectedIngredients;
+    
+    const preferencesGroupH4 = document.querySelector('.preferences-group h4');
+    if (preferencesGroupH4) preferencesGroupH4.textContent = translations[currentLanguage].dietaryPreferences;
+    
+    // Update labels for checkboxes
+    const vegetarianLabel = document.querySelector('label[for="vegetarian"]');
+    if (vegetarianLabel) vegetarianLabel.textContent = translations[currentLanguage].vegetarian;
+    
+    const veganLabel = document.querySelector('label[for="vegan"]');
+    if (veganLabel) veganLabel.textContent = translations[currentLanguage].vegan;
+    
+    const glutenFreeLabel = document.querySelector('label[for="gluten-free"]');
+    if (glutenFreeLabel) glutenFreeLabel.textContent = translations[currentLanguage].glutenFree;
+    
+    const lowCarbLabel = document.querySelector('label[for="low-carb"]');
+    if (lowCarbLabel) lowCarbLabel.textContent = translations[currentLanguage].lowCarb;
+    
+    // Update filter labels
+    const filterLabels = document.querySelectorAll('.filter-label');
+    if (filterLabels[0]) filterLabels[0].textContent = translations[currentLanguage].difficulty;
+    if (filterLabels[1]) filterLabels[1].textContent = translations[currentLanguage].time;
+    
+    // Update difficulty filters
+    const difficultyFilters = document.querySelectorAll('.difficulty-filter');
+    if (difficultyFilters[0]) difficultyFilters[0].textContent = translations[currentLanguage].all;
+    if (difficultyFilters[1]) difficultyFilters[1].textContent = translations[currentLanguage].easy;
+    if (difficultyFilters[2]) difficultyFilters[2].textContent = translations[currentLanguage].medium;
+    if (difficultyFilters[3]) difficultyFilters[3].textContent = translations[currentLanguage].hard;
+    
+    // Update time filters
+    const timeFilters = document.querySelectorAll('.time-filter');
+    if (timeFilters[0]) timeFilters[0].textContent = translations[currentLanguage].allTime;
+    if (timeFilters[1]) timeFilters[1].textContent = translations[currentLanguage].quick;
+    if (timeFilters[2]) timeFilters[2].textContent = translations[currentLanguage].mediumTime;
+    if (timeFilters[3]) timeFilters[3].textContent = translations[currentLanguage].long;
+    
+    // Update results screen
+    const resultsTitle = document.querySelector('#results-screen h2');
+    if (resultsTitle) resultsTitle.textContent = translations[currentLanguage].suggestedRecipes;
+    
+    // Update sort labels
+    const sortLabel = document.querySelector('.sorting-options .filter-label');
+    if (sortLabel) sortLabel.textContent = translations[currentLanguage].sortBy;
+    
+    // Update sort buttons
+    const sortButtons = document.querySelectorAll('.sort-button');
+    if (sortButtons[0]) sortButtons[0].textContent = translations[currentLanguage].alphabetical;
+    if (sortButtons[1]) sortButtons[1].textContent = translations[currentLanguage].prepTime;
+    if (sortButtons[2]) sortButtons[2].textContent = translations[currentLanguage].cookTime;
+    if (sortButtons[3]) sortButtons[3].textContent = translations[currentLanguage].difficultySort;
+    if (sortButtons[4]) sortButtons[4].textContent = translations[currentLanguage].calories;
+    
     // Update footer
-    document.querySelector('footer').textContent = translations[currentLanguage].footer;
+    const footer = document.querySelector('footer');
+    if (footer) footer.textContent = translations[currentLanguage].footer;
+    
+    // Update document title
+    document.title = translations[currentLanguage].mainTitle;
+    
+    // Translate recipe cards and other dynamic content
+    translateRecipeText();
 }
 
 // Add event listener to language toggle button
@@ -1443,131 +1518,83 @@ function findMatchingRecipes() {
 }
 
 function displayRecipes(matchingRecipes) {
-    document.getElementById('input-screen').classList.remove('active');
-    document.getElementById('results-screen').classList.add('active');
+    const resultsContainer = document.getElementById('recipes-container');
+    resultsContainer.innerHTML = '';
     
-    const container = document.getElementById('recipes-container');
-    container.innerHTML = '';
+    // Add notification if we're using alternative results due to no exact matches
+    const showingAlternativeResults = document.querySelector('.notification');
+    if (showingAlternativeResults) {
+        showingAlternativeResults.remove();
+    }
     
     if (matchingRecipes.length === 0) {
-        container.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-search"></i>
-                <p>Δεν βρέθηκαν συνταγές με τα συστατικά που επιλέξατε.</p>
-                <p>Δοκιμάστε να προσθέσετε περισσότερα συστατικά ή να αλλάξετε τις προτιμήσεις σας.</p>
-            </div>
-        `;
+        resultsContainer.innerHTML = '<div class="no-results">Δεν βρέθηκαν συνταγές. Δοκιμάστε διαφορετικά συστατικά ή προτιμήσεις.</div>';
         return;
     }
     
-    // Add a notification when we're showing alternative recipes due to relaxed criteria
-    const hasRelaxedCriteria = 
-        (selectedIngredients.length > 0 || dietaryPreferences.length > 0 || 
-         difficultyFilter !== 'all' || timeFilter !== 'all') && 
-        !matchingRecipes.every(recipe => {
-            // Check original strict criteria
-            const matchesPreferences = dietaryPreferences.length === 0 || 
-                dietaryPreferences.every(pref => recipe.categories.includes(pref));
-            
-            const matchesIngredients = selectedIngredients.length === 0 || 
-                selectedIngredients.some(ingredient => 
-                    recipe.ingredients.some(i => i.includes(ingredient))
-                );
-            
-            const matchesDifficulty = difficultyFilter === 'all' || 
-                (difficultyFilter === 'easy' && recipe.difficulty === 'Εύκολη') ||
-                (difficultyFilter === 'medium' && recipe.difficulty === 'Μέτρια') ||
-                (difficultyFilter === 'hard' && recipe.difficulty === 'Δύσκολη');
-            
-            let matchesTime = true;
-            if (timeFilter !== 'all') {
-                const cookTimeMinutes = parseInt(recipe.cookTime) || 0;
-                
-                if (timeFilter === 'quick' && cookTimeMinutes > 30) matchesTime = false;
-                if (timeFilter === 'medium' && (cookTimeMinutes <= 30 || cookTimeMinutes > 60)) matchesTime = false;
-                if (timeFilter === 'long' && cookTimeMinutes <= 60) matchesTime = false;
-            }
-            
-            return matchesPreferences && matchesIngredients && matchesDifficulty && matchesTime;
-        });
-    
-    if (hasRelaxedCriteria) {
+    // Check if relaxed criteria were used
+    if (matchingRecipes.isRelaxed) {
+        // Create notification element
         const notification = document.createElement('div');
-        notification.className = 'relaxed-criteria-notice';
-        notification.innerHTML = `
-            <i class="fas fa-info-circle"></i>
-            <p>Δεν βρέθηκαν ακριβή αποτελέσματα. Εμφανίζονται εναλλακτικές συνταγές που μπορεί να σας ενδιαφέρουν.</p>
-        `;
-        container.appendChild(notification);
+        notification.className = 'notification';
+        notification.innerHTML = '<i class="fas fa-info-circle"></i> Showing alternative recipes because no exact matches were found.';
+        resultsContainer.appendChild(notification);
     }
-    
-    matchingRecipes.forEach((recipe, index) => {
-        const card = document.createElement('div');
-        card.className = 'recipe-card';
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
+
+    // Create recipe cards
+    matchingRecipes.forEach(recipe => {
+        const recipeCard = document.createElement('div');
+        recipeCard.className = 'recipe-card';
         
-        const difficultyClass = recipe.difficulty === 'Εύκολη' ? 'easy' :
-                             recipe.difficulty === 'Μέτρια' ? 'medium' : 'hard';
+        // Create the emoji element based on recipe name
+        let emoji = getEmojiForRecipe(recipe.name);
         
-        // Get category icons
-        const categoryIcons = getCategoryIcons(recipe.categories);
-        
-        card.innerHTML = `
-            <div class="recipe-header-text">
-                <h3>${recipe.name}</h3>
+        recipeCard.innerHTML = `
+            <div class="recipe-head">
+                <div class="food-emoji-large">${emoji}</div>
+                <div class="recipe-header-text">
+                    <h3 class="recipe-title">${recipe.name}</h3>
+                </div>
+            </div>
+            <div class="recipe-content">
+                <div class="recipe-info">
+                    <div class="recipe-info-item">
+                        <span>Δυσκολία: </span>
+                        <span class="difficulty-indicator difficulty-${getDifficultyClass(recipe.difficulty)}">${recipe.difficulty}</span>
+                    </div>
+                    <div class="recipe-info-item">
+                        <span>Χρόνος Προετοιμασίας: </span>
+                        <span>${recipe.prepTime}</span>
+                    </div>
+                    <div class="recipe-info-item">
+                        <span>Χρόνος Μαγειρέματος: </span>
+                        <span>${recipe.cookTime}</span>
+                    </div>
+                </div>
                 <div class="recipe-categories">
-                    ${categoryIcons}
+                    <span>Κατηγορίες: </span>
+                    <span>${getCategoryIcons(recipe.categories)}</span>
                 </div>
-            </div>
-            <div class="recipe-meta">
-                <div class="meta-item" title="Χρόνος προετοιμασίας">
-                    <i class="fas fa-clock"></i> ${recipe.prepTime || '30 λεπτά'}
-                </div>
-                <div class="meta-item" title="Χρόνος μαγειρέματος">
-                    <i class="fas fa-fire"></i> ${recipe.cookTime || '45 λεπτά'}
-                </div>
-                <div class="meta-item difficulty ${difficultyClass}" title="Δυσκολία">
-                    <i class="fas fa-chart-line"></i> ${recipe.difficulty || 'Μέτρια'}
-                </div>
-            </div>
-            <div class="ingredients">
-                <strong><i class="fas fa-list"></i> Συστατικά:</strong> ${recipe.ingredients.join(', ')}
-            </div>
-            <div class="instructions">
-                <strong><i class="fas fa-tasks"></i> Οδηγίες:</strong>
-                <ol>
-                    ${recipe.instructions.map(step => `<li>${step}</li>`).join('')}
-                </ol>
-            </div>
-            <div class="nutrition">
-                <strong><i class="fas fa-heartbeat"></i> Διατροφική Αξία:</strong> ${recipe.nutrition}
+                <button class="view-recipe-btn" onclick="showRecipeDetails('${recipe.name}')">Δείτε Συνταγή</button>
             </div>
         `;
         
-        container.appendChild(card);
-        
-        // Add card hover effect
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-        });
-        
-        // Stagger animation for recipe cards
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 100 + (index * 150));
+        resultsContainer.appendChild(recipeCard);
     });
     
-    // Scroll to top of results
-    setTimeout(() => {
-        const resultsTop = document.getElementById('results-screen').offsetTop;
-        window.scrollTo({ top: resultsTop, behavior: 'smooth' });
-    }, 300);
+    // Add empty boxes to fill out the grid
+    fillEmptyBoxes();
+    
+    // Fix recipe titles
+    enforceTitleVisibility();
+    
+    // If we've changed the language, translate the recipes as well
+    if (currentLanguage === 'en') {
+        translateRecipeText();
+    }
+
+    // Show the results screen
+    switchScreen('results-screen');
 }
 
 function getCategoryIcons(categories) {
@@ -1828,5 +1855,166 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 });
+
+// Add this function after the existing updateLanguage function
+function translateRecipeText() {
+    console.log("Translating recipe text elements");
+    
+    // Translate recipe cards if any exist
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    if (recipeCards.length > 0) {
+        console.log(`Found ${recipeCards.length} recipe cards to translate`);
+        
+        recipeCards.forEach(card => {
+            // Get recipe name from the card
+            const titleElement = card.querySelector('h3');
+            if (!titleElement) return;
+            
+            const recipeName = titleElement.textContent.trim();
+            console.log(`Processing recipe: ${recipeName}`);
+            
+            // Find matching recipe in our database
+            const recipe = recipes.find(r => r.name === recipeName);
+            if (!recipe) return;
+            
+            // Translate difficulty and times
+            const infoItems = card.querySelectorAll('.recipe-info-item');
+            infoItems.forEach(item => {
+                const label = item.querySelector('span:first-child');
+                if (!label) return;
+                
+                if (label.textContent.includes('Δυσκολία') || label.textContent.includes('Difficulty')) {
+                    label.textContent = currentLanguage === 'el' ? 'Δυσκολία: ' : 'Difficulty: ';
+                    
+                    // Translate difficulty value
+                    const valueSpan = item.querySelector('span:nth-child(2)');
+                    if (valueSpan) {
+                        const difficultyMap = {
+                            'Εύκολη': 'Easy',
+                            'Μέτρια': 'Medium', 
+                            'Δύσκολη': 'Hard',
+                            'Easy': 'Εύκολη',
+                            'Medium': 'Μέτρια',
+                            'Hard': 'Δύσκολη'
+                        };
+                        
+                        const currentValue = valueSpan.textContent.trim();
+                        if (difficultyMap[currentValue]) {
+                            valueSpan.textContent = currentLanguage === 'el' ? 
+                                difficultyMap[currentValue] : 
+                                difficultyMap[currentValue];
+                        }
+                    }
+                }
+                
+                if (label.textContent.includes('Χρόνος Προετοιμασίας') || label.textContent.includes('Prep Time')) {
+                    label.textContent = currentLanguage === 'el' ? 'Χρόνος Προετοιμασίας: ' : 'Prep Time: ';
+                }
+                
+                if (label.textContent.includes('Χρόνος Μαγειρέματος') || label.textContent.includes('Cook Time')) {
+                    label.textContent = currentLanguage === 'el' ? 'Χρόνος Μαγειρέματος: ' : 'Cook Time: ';
+                }
+            });
+            
+            // Translate categories
+            const categoryText = card.querySelector('.recipe-categories');
+            if (categoryText) {
+                const categoryMap = {
+                    'Χορτοφαγικό': 'Vegetarian',
+                    'Νηστίσιμο': 'Vegan',
+                    'Χωρίς Γλουτένη': 'Gluten Free',
+                    'Χαμηλό σε Υδατάνθρακες': 'Low Carb',
+                    'Vegetarian': 'Χορτοφαγικό',
+                    'Vegan': 'Νηστίσιμο',
+                    'Gluten Free': 'Χωρίς Γλουτένη',
+                    'Low Carb': 'Χαμηλό σε Υδατάνθρακες'
+                };
+                
+                let updatedText = categoryText.textContent;
+                Object.keys(categoryMap).forEach(key => {
+                    if (updatedText.includes(key)) {
+                        updatedText = updatedText.replace(key, currentLanguage === 'el' ? key : categoryMap[key]);
+                    }
+                });
+                
+                // Replace "Κατηγορίες" with "Categories" if in English
+                if (currentLanguage === 'en') {
+                    updatedText = updatedText.replace('Κατηγορίες:', 'Categories:');
+                } else {
+                    updatedText = updatedText.replace('Categories:', 'Κατηγορίες:');
+                }
+                
+                categoryText.textContent = updatedText;
+            }
+            
+            // Translate "View Recipe" button
+            const viewButton = card.querySelector('.view-recipe-btn');
+            if (viewButton) {
+                viewButton.textContent = currentLanguage === 'el' ? 'Δείτε Συνταγή' : 'View Recipe';
+            }
+        });
+    }
+    
+    // Translate recipe details if a modal is open
+    const recipeModal = document.querySelector('.recipe-modal.active');
+    if (recipeModal) {
+        console.log("Translating open recipe modal");
+        
+        // Translate ingredients header
+        const ingredientsHeader = recipeModal.querySelector('.ingredients-list h4');
+        if (ingredientsHeader) {
+            ingredientsHeader.textContent = currentLanguage === 'el' ? 'Συστατικά:' : 'Ingredients:';
+        }
+        
+        // Translate instructions header
+        const instructionsHeader = recipeModal.querySelector('.instructions-list h4');
+        if (instructionsHeader) {
+            instructionsHeader.textContent = currentLanguage === 'el' ? 'Οδηγίες:' : 'Instructions:';
+        }
+        
+        // Translate nutrition info
+        const nutritionInfo = recipeModal.querySelector('.nutrition-info');
+        if (nutritionInfo) {
+            const nutritionText = nutritionInfo.textContent;
+            if (currentLanguage === 'en') {
+                nutritionInfo.textContent = nutritionText
+                    .replace('Θερμίδες:', 'Calories:')
+                    .replace('Πρωτεΐνες:', 'Protein:')
+                    .replace('Υδατάνθρακες:', 'Carbs:')
+                    .replace('Λίπος:', 'Fat:');
+            } else {
+                nutritionInfo.textContent = nutritionText
+                    .replace('Calories:', 'Θερμίδες:')
+                    .replace('Protein:', 'Πρωτεΐνες:')
+                    .replace('Carbs:', 'Υδατάνθρακες:')
+                    .replace('Fat:', 'Λίπος:');
+            }
+        }
+        
+        // Translate close button
+        const closeButton = recipeModal.querySelector('.close-modal');
+        if (closeButton) {
+            closeButton.textContent = currentLanguage === 'el' ? 'Κλείσιμο' : 'Close';
+        }
+    }
+    
+    // Translate notification messages
+    const notification = document.querySelector('.notification');
+    if (notification) {
+        if (notification.textContent.includes('Showing alternative recipes')) {
+            notification.textContent = currentLanguage === 'el' 
+                ? 'Εμφάνιση εναλλακτικών συνταγών επειδή δεν βρέθηκαν ακριβείς αντιστοιχίες.'
+                : 'Showing alternative recipes because no exact matches were found.';
+        }
+    }
+    
+    // Translate "No results" message
+    const noResults = document.querySelector('.no-results');
+    if (noResults) {
+        noResults.textContent = currentLanguage === 'el'
+            ? 'Δεν βρέθηκαν συνταγές. Δοκιμάστε διαφορετικά συστατικά ή προτιμήσεις.'
+            : 'No recipes found. Try different ingredients or preferences.';
+    }
+}
 
 // Original code continues below... 
