@@ -370,6 +370,8 @@ p {
     background: var(--light-bg);
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 600px;
 }
 
 .no-results i {
@@ -377,6 +379,30 @@ p {
     color: var(--secondary-color);
     margin-bottom: 15px;
     opacity: 0.5;
+}
+
+.relaxed-criteria-notice {
+    background-color: #fff8e6;
+    border-left: 4px solid #ffd56a;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.relaxed-criteria-notice i {
+    color: #e6ae00;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.relaxed-criteria-notice p {
+    margin: 0;
+    font-size: 14px;
+    color: #7a6826;
 }
 
 .recipe-card {
