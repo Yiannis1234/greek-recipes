@@ -1375,150 +1375,55 @@ function setSortingOption(option) {
     }
 }
 
-function generateRecipes() {
-    dietaryPreferences = getSelectedPreferences();
-    const matchingRecipes = findMatchingRecipes();
-    displayRecipes(matchingRecipes);
-    playCompletionSound();
-}
-
-function findMatchingRecipes() {
-    // First try: Apply all filters
-    let filteredRecipes = recipes.filter(recipe => {
-        // Check if recipe matches dietary preferences
-        const matchesPreferences = dietaryPreferences.length === 0 || 
-            dietaryPreferences.every(pref => recipe.categories.includes(pref));
-        
-        // Check if recipe contains at least one selected ingredient
-        const matchesIngredients = selectedIngredients.length === 0 || 
-            selectedIngredients.some(ingredient => 
-                recipe.ingredients.some(i => i.includes(ingredient))
-            );
-        
-        // Check difficulty filter
-        const matchesDifficulty = difficultyFilter === 'all' || 
-            (difficultyFilter === 'easy' && recipe.difficulty === 'Εύκολη') ||
-            (difficultyFilter === 'medium' && recipe.difficulty === 'Μέτρια') ||
-            (difficultyFilter === 'hard' && recipe.difficulty === 'Δύσκολη');
-        
-        // Check time filter
-        let matchesTime = true;
-        if (timeFilter !== 'all') {
-            const cookTimeMinutes = parseInt(recipe.cookTime) || 0;
-            
-            if (timeFilter === 'quick' && cookTimeMinutes > 30) matchesTime = false;
-            if (timeFilter === 'medium' && (cookTimeMinutes <= 30 || cookTimeMinutes > 60)) matchesTime = false;
-            if (timeFilter === 'long' && cookTimeMinutes <= 60) matchesTime = false;
-        }
-        
-        return matchesPreferences && matchesIngredients && matchesDifficulty && matchesTime;
+// Add this function if it doesn't exist
+function switchScreen(screenId) {
+    console.log("Switching to screen:", screenId);
+    // Hide all screens
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
     });
     
-    // If no recipes found, relax constraints gradually
-    if (filteredRecipes.length === 0 && (selectedIngredients.length > 0 || dietaryPreferences.length > 0 || difficultyFilter !== 'all' || timeFilter !== 'all')) {
-        console.log("No recipes found with strict criteria, relaxing constraints...");
-        
-        // Try without time and difficulty filters
-        filteredRecipes = recipes.filter(recipe => {
-            const matchesPreferences = dietaryPreferences.length === 0 || 
-                dietaryPreferences.every(pref => recipe.categories.includes(pref));
-            
-            const matchesIngredients = selectedIngredients.length === 0 || 
-                selectedIngredients.some(ingredient => 
-                    recipe.ingredients.some(i => i.includes(ingredient))
-                );
-            
-            return matchesPreferences && matchesIngredients;
-        });
-        
-        // Still no recipes? Try to match just ingredients or just dietary preferences
-        if (filteredRecipes.length === 0) {
-            if (selectedIngredients.length > 0) {
-                filteredRecipes = recipes.filter(recipe => 
-                    selectedIngredients.some(ingredient => 
-                        recipe.ingredients.some(i => i.includes(ingredient))
-                    )
-                );
-            }
-            
-            // If still empty and we have dietary preferences, try just those
-            if (filteredRecipes.length === 0 && dietaryPreferences.length > 0) {
-                filteredRecipes = recipes.filter(recipe => 
-                    dietaryPreferences.every(pref => recipe.categories.includes(pref))
-                );
-            }
-        }
-        
-        // As a last resort, find recipes that are most similar to the ingredients requested
-        if (filteredRecipes.length === 0 && selectedIngredients.length > 0) {
-            // Calculate similarity scores for each recipe
-            const recipesWithScores = recipes.map(recipe => {
-                let score = 0;
-                // Check for partial matches in ingredients
-                for (const selectedIngredient of selectedIngredients) {
-                    for (const recipeIngredient of recipe.ingredients) {
-                        if (recipeIngredient.includes(selectedIngredient) || 
-                            selectedIngredient.includes(recipeIngredient)) {
-                            score += 1;
-                        }
-                    }
-                }
-                return { recipe, score };
-            });
-            
-            // Sort by similarity score
-            recipesWithScores.sort((a, b) => b.score - a.score);
-            
-            // Take top 3 most relevant recipes
-            filteredRecipes = recipesWithScores
-                .slice(0, 3)
-                .map(item => item.recipe);
-        }
-        
-        // Final fallback: If everything else fails, return some random recipes
-        if (filteredRecipes.length === 0) {
-            // Return 3 random recipes
-            filteredRecipes = [];
-            const tempRecipes = [...recipes];
-            for (let i = 0; i < 3 && tempRecipes.length > 0; i++) {
-                const randomIndex = Math.floor(Math.random() * tempRecipes.length);
-                filteredRecipes.push(tempRecipes[randomIndex]);
-                tempRecipes.splice(randomIndex, 1);
-            }
-        }
+    // Show the requested screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.add('active');
+    } else {
+        console.error(`Screen with ID ${screenId} not found!`);
     }
-    
-    // Sort recipes based on sorting option
-    if (sortingOption === 'alphabetical') {
-        filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortingOption === 'prep-time') {
-        filteredRecipes.sort((a, b) => {
-            const aTime = parseInt(a.prepTime) || 0;
-            const bTime = parseInt(b.prepTime) || 0;
-            return aTime - bTime;
-        });
-    } else if (sortingOption === 'cook-time') {
-        filteredRecipes.sort((a, b) => {
-            const aTime = parseInt(a.cookTime) || 0;
-            const bTime = parseInt(b.cookTime) || 0;
-            return aTime - bTime;
-        });
-    } else if (sortingOption === 'difficulty') {
-        const difficultyOrder = { 'Εύκολη': 1, 'Μέτρια': 2, 'Δύσκολη': 3 };
-        filteredRecipes.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
-    } else if (sortingOption === 'calories') {
-        filteredRecipes.sort((a, b) => {
-            const aCalories = parseInt(a.nutrition.match(/\d+/)[0]) || 0;
-            const bCalories = parseInt(b.nutrition.match(/\d+/)[0]) || 0;
-            return aCalories - bCalories;
-        });
-    }
-    
-    return filteredRecipes;
 }
 
+// Ensure the generateRecipes function uses this switchScreen function
+function generateRecipes() {
+    console.log("generateRecipes function called");
+    
+    // Get selected dietary preferences
+    dietaryPreferences = getSelectedPreferences();
+    console.log("Selected dietary preferences:", dietaryPreferences);
+    
+    // Get matching recipes
+    const matchingRecipes = findMatchingRecipes();
+    console.log("Found matching recipes:", matchingRecipes ? matchingRecipes.length : 0);
+    
+    // Display recipes
+    displayRecipes(matchingRecipes);
+    
+    // Play sound effect
+    playCompletionSound();
+    
+    // Switch to results screen using the switchScreen function
+    switchScreen('results-screen');
+}
+
+// Update displayRecipes to use the switchScreen function
 function displayRecipes(matchingRecipes) {
+    console.log("displayRecipes function called");
     const resultsContainer = document.getElementById('recipes-container');
+    
+    if (!resultsContainer) {
+        console.error("Could not find recipes-container element!");
+        return;
+    }
+    
     resultsContainer.innerHTML = '';
     
     // Add notification if we're using alternative results due to no exact matches
@@ -1527,10 +1432,15 @@ function displayRecipes(matchingRecipes) {
         showingAlternativeResults.remove();
     }
     
-    if (matchingRecipes.length === 0) {
+    if (!matchingRecipes || matchingRecipes.length === 0) {
+        console.log("No matching recipes found, displaying no results message");
         resultsContainer.innerHTML = '<div class="no-results">Δεν βρέθηκαν συνταγές. Δοκιμάστε διαφορετικά συστατικά ή προτιμήσεις.</div>';
+        // Still switch to results screen to show the no-results message
+        switchScreen('results-screen');
         return;
     }
+    
+    console.log(`Displaying ${matchingRecipes.length} recipes`);
     
     // Check if relaxed criteria were used
     if (matchingRecipes.isRelaxed) {
@@ -1593,7 +1503,7 @@ function displayRecipes(matchingRecipes) {
         translateRecipeText();
     }
 
-    // Show the results screen
+    // Show the results screen using the switchScreen function
     switchScreen('results-screen');
 }
 
@@ -2018,3 +1928,141 @@ function translateRecipeText() {
 }
 
 // Original code continues below... 
+
+function findMatchingRecipes() {
+    // First try: Apply all filters
+    let filteredRecipes = recipes.filter(recipe => {
+        // Check if recipe matches dietary preferences
+        const matchesPreferences = dietaryPreferences.length === 0 || 
+            dietaryPreferences.every(pref => recipe.categories.includes(pref));
+        
+        // Check if recipe contains at least one selected ingredient
+        const matchesIngredients = selectedIngredients.length === 0 || 
+            selectedIngredients.some(ingredient => 
+                recipe.ingredients.some(i => i.includes(ingredient))
+            );
+        
+        // Check difficulty filter
+        const matchesDifficulty = difficultyFilter === 'all' || 
+            (difficultyFilter === 'easy' && recipe.difficulty === 'Εύκολη') ||
+            (difficultyFilter === 'medium' && recipe.difficulty === 'Μέτρια') ||
+            (difficultyFilter === 'hard' && recipe.difficulty === 'Δύσκολη');
+        
+        // Check time filter
+        let matchesTime = true;
+        if (timeFilter !== 'all') {
+            const cookTimeMinutes = parseInt(recipe.cookTime) || 0;
+            
+            if (timeFilter === 'quick' && cookTimeMinutes > 30) matchesTime = false;
+            if (timeFilter === 'medium' && (cookTimeMinutes <= 30 || cookTimeMinutes > 60)) matchesTime = false;
+            if (timeFilter === 'long' && cookTimeMinutes <= 60) matchesTime = false;
+        }
+        
+        return matchesPreferences && matchesIngredients && matchesDifficulty && matchesTime;
+    });
+    
+    // If no recipes found, relax constraints gradually
+    if (filteredRecipes.length === 0 && (selectedIngredients.length > 0 || dietaryPreferences.length > 0 || difficultyFilter !== 'all' || timeFilter !== 'all')) {
+        console.log("No recipes found with strict criteria, relaxing constraints...");
+        
+        // Try without time and difficulty filters
+        filteredRecipes = recipes.filter(recipe => {
+            const matchesPreferences = dietaryPreferences.length === 0 || 
+                dietaryPreferences.every(pref => recipe.categories.includes(pref));
+            
+            const matchesIngredients = selectedIngredients.length === 0 || 
+                selectedIngredients.some(ingredient => 
+                    recipe.ingredients.some(i => i.includes(ingredient))
+                );
+            
+            return matchesPreferences && matchesIngredients;
+        });
+        
+        // Still no recipes? Try to match just ingredients or just dietary preferences
+        if (filteredRecipes.length === 0) {
+            if (selectedIngredients.length > 0) {
+                filteredRecipes = recipes.filter(recipe => 
+                    selectedIngredients.some(ingredient => 
+                        recipe.ingredients.some(i => i.includes(ingredient))
+                    )
+                );
+            }
+            
+            // If still empty and we have dietary preferences, try just those
+            if (filteredRecipes.length === 0 && dietaryPreferences.length > 0) {
+                filteredRecipes = recipes.filter(recipe => 
+                    dietaryPreferences.every(pref => recipe.categories.includes(pref))
+                );
+            }
+        }
+        
+        // As a last resort, find recipes that are most similar to the ingredients requested
+        if (filteredRecipes.length === 0 && selectedIngredients.length > 0) {
+            // Calculate similarity scores for each recipe
+            const recipesWithScores = recipes.map(recipe => {
+                let score = 0;
+                // Check for partial matches in ingredients
+                for (const selectedIngredient of selectedIngredients) {
+                    for (const recipeIngredient of recipe.ingredients) {
+                        if (recipeIngredient.includes(selectedIngredient) || 
+                            selectedIngredient.includes(recipeIngredient)) {
+                            score += 1;
+                        }
+                    }
+                }
+                return { recipe, score };
+            });
+            
+            // Sort by similarity score
+            recipesWithScores.sort((a, b) => b.score - a.score);
+            
+            // Take top 3 most relevant recipes
+            filteredRecipes = recipesWithScores
+                .slice(0, 3)
+                .map(item => item.recipe);
+        }
+        
+        // Final fallback: If everything else fails, return some random recipes
+        if (filteredRecipes.length === 0) {
+            // Return 3 random recipes
+            filteredRecipes = [];
+            const tempRecipes = [...recipes];
+            for (let i = 0; i < 3 && tempRecipes.length > 0; i++) {
+                const randomIndex = Math.floor(Math.random() * tempRecipes.length);
+                filteredRecipes.push(tempRecipes[randomIndex]);
+                tempRecipes.splice(randomIndex, 1);
+            }
+        }
+        
+        // Mark that we're using relaxed criteria
+        filteredRecipes.isRelaxed = true;
+    }
+    
+    // Sort recipes based on sorting option
+    if (sortingOption === 'alphabetical') {
+        filteredRecipes.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortingOption === 'prep-time') {
+        filteredRecipes.sort((a, b) => {
+            const aTime = parseInt(a.prepTime) || 0;
+            const bTime = parseInt(b.prepTime) || 0;
+            return aTime - bTime;
+        });
+    } else if (sortingOption === 'cook-time') {
+        filteredRecipes.sort((a, b) => {
+            const aTime = parseInt(a.cookTime) || 0;
+            const bTime = parseInt(b.cookTime) || 0;
+            return aTime - bTime;
+        });
+    } else if (sortingOption === 'difficulty') {
+        const difficultyOrder = { 'Εύκολη': 1, 'Μέτρια': 2, 'Δύσκολη': 3 };
+        filteredRecipes.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+    } else if (sortingOption === 'calories') {
+        filteredRecipes.sort((a, b) => {
+            const aCalories = parseInt(a.nutrition.match(/\d+/)[0]) || 0;
+            const bCalories = parseInt(b.nutrition.match(/\d+/)[0]) || 0;
+            return aCalories - bCalories;
+        });
+    }
+    
+    return filteredRecipes;
+}
