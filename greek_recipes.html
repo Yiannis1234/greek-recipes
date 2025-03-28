@@ -271,80 +271,228 @@
         // Language translations
         const translations = {
             el: {
-                mainTitle: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
-                featureDesc: 'Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!',
-                feature1: 'Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος',
+                mainTitle: 'Συνταγές οντότητα και καρδιακές διατροφής',
+                featureDesc: 'Καλωσήρθατε στη γεννήτρια συνταγών μας. Επιλέξτε τα συστατικά που έχετε διαθέσιμα και θα σας προτείνουμε αυθεντικές ελληνικές συνταγές.',
+                feature1: 'Φιλτράρετε τις συνταγές βάσει διατροφικών προτιμήσεων',
                 feature2: 'Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια',
                 feature3: 'Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας',
                 startButton: 'Ξεκινήστε',
-                homeButton: 'ΑΡΧΙΚΗ ΣΕΛΙΔΑ / HOME',
+                ingredientsTitle: 'Επιλέξτε Συστατικά & Προτιμήσεις',
+                selectIngredients: 'Επιλέξτε Συστατικά',
+                ingredientsPrompt: 'Προσθέστε τα συστατικά που έχετε διαθέσιμα ή που θα θέλατε να περιλαμβάνονται στη συνταγή σας.',
+                addIngredient: 'Προσθήκη',
+                ingredientPlaceholder: 'Πληκτρολογήστε ένα συστατικό...',
+                popularIngredients: 'Δημοφιλή Συστατικά:',
+                selectedIngredients: 'Επιλεγμένα Συστατικά:',
+                preferences: 'Προτιμήσεις',
+                preferencesPrompt: 'Προσαρμόστε τις προτιμήσεις σας για πιο εξατομικευμένα αποτελέσματα.',
+                dietaryPreferences: 'Διατροφικές Προτιμήσεις:',
+                vegetarian: 'Χορτοφαγικό',
+                vegan: 'Νηστίσιμο',
+                glutenFree: 'Χωρίς Γλουτένη',
+                lowCarb: 'Χαμηλό σε Υδατάνθρακες',
+                difficulty: 'Δυσκολία:',
+                all: 'Όλες',
+                easy: 'Εύκολη',
+                medium: 'Μέτρια',
+                hard: 'Δύσκολη',
+                time: 'Χρόνος:',
+                allTime: 'Όλα',
+                quick: 'Γρήγορο (< 30\')',
+                mediumTime: 'Μέτριο (30-60\')',
+                long: 'Μεγάλο (> 60\')',
+                generateRecipes: 'Δημιουργία Συνταγών',
+                suggestedRecipes: 'Προτεινόμενες Συνταγές',
+                sortBy: 'Ταξινόμηση:',
+                alphabetical: 'Αλφαβητικά',
+                prepTime: 'Χρόνος Προετοιμασίας',
+                cookTime: 'Χρόνος Μαγειρέματος',
+                difficultySort: 'Δυσκολία',
+                calories: 'Θερμίδες',
+                newSearch: 'Νέα Αναζήτηση',
                 footer: '© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | Ελληνική Κουζίνα'
             },
             en: {
-                mainTitle: 'Smart Greek Recipe Generator',
-                featureDesc: 'Discover new Greek recipes based on your ingredients!',
-                feature1: 'Filter recipes by difficulty and cooking time',
+                mainTitle: 'Entity Recipes and Heart Nutrition',
+                featureDesc: 'Welcome to our recipe generator. Choose the ingredients you have available and we will suggest authentic Greek recipes.',
+                feature1: 'Filter recipes based on dietary preferences',
                 feature2: 'Sort your recipes with multiple criteria',
                 feature3: 'Over 50 authentic Greek recipes in our database',
                 startButton: 'Get Started',
-                homeButton: 'HOME / ΑΡΧΙΚΗ ΣΕΛΙΔΑ',
+                ingredientsTitle: 'Select Ingredients & Preferences',
+                selectIngredients: 'Select Ingredients',
+                ingredientsPrompt: 'Add ingredients that you have available or would like to include in your recipe.',
+                addIngredient: 'Add',
+                ingredientPlaceholder: 'Type an ingredient...',
+                popularIngredients: 'Popular Ingredients:',
+                selectedIngredients: 'Selected Ingredients:',
+                preferences: 'Preferences',
+                preferencesPrompt: 'Customize your preferences for more personalized results.',
+                dietaryPreferences: 'Dietary Preferences:',
+                vegetarian: 'Vegetarian',
+                vegan: 'Vegan',
+                glutenFree: 'Gluten Free',
+                lowCarb: 'Low Carb',
+                difficulty: 'Difficulty:',
+                all: 'All',
+                easy: 'Easy',
+                medium: 'Medium',
+                hard: 'Hard',
+                time: 'Time:',
+                allTime: 'All',
+                quick: 'Quick (< 30\')',
+                mediumTime: 'Medium (30-60\')',
+                long: 'Long (> 60\')',
+                generateRecipes: 'Generate Recipes',
+                suggestedRecipes: 'Suggested Recipes',
+                sortBy: 'Sort by:',
+                alphabetical: 'Alphabetical',
+                prepTime: 'Preparation Time',
+                cookTime: 'Cooking Time',
+                difficultySort: 'Difficulty',
+                calories: 'Calories',
+                newSearch: 'New Search',
                 footer: '© 2024 Smart Greek Recipe Generator | Greek Cuisine'
             }
         };
         
         // Function to update UI text based on selected language
         function updateLanguage() {
-            const elementsToUpdate = {
-                'mainTitle': translations[currentLanguage].mainTitle,
-                'featureDesc': translations[currentLanguage].featureDesc,
-                'feature1': translations[currentLanguage].feature1,
-                'feature2': translations[currentLanguage].feature2,
-                'feature3': translations[currentLanguage].feature3,
-                'startButton': translations[currentLanguage].startButton
-            };
+            console.log("Updating language to:", currentLanguage);
             
-            // Update each element's text content
-            for (const [id, text] of Object.entries(elementsToUpdate)) {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.textContent = text;
-                }
-            }
+            // Update element texts by ID
+            document.getElementById('mainTitle').textContent = translations[currentLanguage].mainTitle;
+            document.getElementById('featureDesc').textContent = translations[currentLanguage].featureDesc;
+            document.getElementById('feature1').textContent = translations[currentLanguage].feature1;
+            document.getElementById('feature2').textContent = translations[currentLanguage].feature2;
+            document.getElementById('feature3').textContent = translations[currentLanguage].feature3;
+            document.getElementById('start-button').innerHTML = '<i class="fas fa-utensils"></i> ' + translations[currentLanguage].startButton;
             
-            // Update home button text
-            const homeButton = document.getElementById('homeButton');
-            if (homeButton) {
-                // Preserve the icon by setting innerHTML
-                homeButton.innerHTML = `<i class="fas fa-home"></i> ${translations[currentLanguage].homeButton}`;
-            }
+            // Update header texts
+            const ingredientsTitle = document.querySelector('.ingredients-title');
+            if (ingredientsTitle) ingredientsTitle.textContent = translations[currentLanguage].ingredientsTitle;
             
-            // Update page title
-            document.title = translations[currentLanguage].mainTitle;
+            const ingredientsSectionH3 = document.querySelector('.ingredients-section h3');
+            if (ingredientsSectionH3) ingredientsSectionH3.innerHTML = '<i class="fas fa-carrot"></i> ' + translations[currentLanguage].selectIngredients;
+            
+            const ingredientsSectionP = document.querySelector('.ingredients-section p');
+            if (ingredientsSectionP) ingredientsSectionP.textContent = translations[currentLanguage].ingredientsPrompt;
+            
+            const preferencesH3 = document.querySelector('.preferences-section h3');
+            if (preferencesH3) preferencesH3.innerHTML = '<i class="fas fa-sliders-h"></i> ' + translations[currentLanguage].preferences;
+            
+            const preferencesP = document.querySelector('.preferences-section p');
+            if (preferencesP) preferencesP.textContent = translations[currentLanguage].preferencesPrompt;
+            
+            // Update input placeholder
+            const ingredientInput = document.getElementById('ingredient-input');
+            if (ingredientInput) ingredientInput.placeholder = translations[currentLanguage].ingredientPlaceholder;
+            
+            // Update buttons
+            const addButton = document.querySelector('.add-button');
+            if (addButton) addButton.innerHTML = '<i class="fas fa-plus"></i> ' + translations[currentLanguage].addIngredient;
+            
+            const primaryButton = document.querySelector('.primary-button');
+            if (primaryButton) primaryButton.innerHTML = '<i class="fas fa-magic"></i> ' + translations[currentLanguage].generateRecipes;
+            
+            const secondaryButton = document.querySelector('.secondary-button');
+            if (secondaryButton) secondaryButton.innerHTML = '<i class="fas fa-redo"></i> ' + translations[currentLanguage].newSearch;
+            
+            // Update section titles/labels
+            const popularIngredientsH4 = document.querySelector('.quick-ingredients h4');
+            if (popularIngredientsH4) popularIngredientsH4.textContent = translations[currentLanguage].popularIngredients;
+            
+            const selectedIngredientsH4 = document.querySelector('.selected-ingredients-container h4');
+            if (selectedIngredientsH4) selectedIngredientsH4.textContent = translations[currentLanguage].selectedIngredients;
+            
+            const preferencesGroupH4 = document.querySelector('.preferences-group h4');
+            if (preferencesGroupH4) preferencesGroupH4.textContent = translations[currentLanguage].dietaryPreferences;
+            
+            // Update labels for checkboxes
+            const vegetarianLabel = document.querySelector('label[for="vegetarian"]');
+            if (vegetarianLabel) vegetarianLabel.textContent = translations[currentLanguage].vegetarian;
+            
+            const veganLabel = document.querySelector('label[for="vegan"]');
+            if (veganLabel) veganLabel.textContent = translations[currentLanguage].vegan;
+            
+            const glutenFreeLabel = document.querySelector('label[for="gluten-free"]');
+            if (glutenFreeLabel) glutenFreeLabel.textContent = translations[currentLanguage].glutenFree;
+            
+            const lowCarbLabel = document.querySelector('label[for="low-carb"]');
+            if (lowCarbLabel) lowCarbLabel.textContent = translations[currentLanguage].lowCarb;
+            
+            // Update filter labels
+            const filterLabels = document.querySelectorAll('.filter-label');
+            if (filterLabels[0]) filterLabels[0].textContent = translations[currentLanguage].difficulty;
+            if (filterLabels[1]) filterLabels[1].textContent = translations[currentLanguage].time;
+            
+            // Update difficulty filters
+            const difficultyFilters = document.querySelectorAll('.difficulty-filter');
+            if (difficultyFilters[0]) difficultyFilters[0].textContent = translations[currentLanguage].all;
+            if (difficultyFilters[1]) difficultyFilters[1].textContent = translations[currentLanguage].easy;
+            if (difficultyFilters[2]) difficultyFilters[2].textContent = translations[currentLanguage].medium;
+            if (difficultyFilters[3]) difficultyFilters[3].textContent = translations[currentLanguage].hard;
+            
+            // Update time filters
+            const timeFilters = document.querySelectorAll('.time-filter');
+            if (timeFilters[0]) timeFilters[0].textContent = translations[currentLanguage].allTime;
+            if (timeFilters[1]) timeFilters[1].textContent = translations[currentLanguage].quick;
+            if (timeFilters[2]) timeFilters[2].textContent = translations[currentLanguage].mediumTime;
+            if (timeFilters[3]) timeFilters[3].textContent = translations[currentLanguage].long;
+            
+            // Update results screen
+            const resultsTitle = document.querySelector('#results-screen h2');
+            if (resultsTitle) resultsTitle.textContent = translations[currentLanguage].suggestedRecipes;
+            
+            // Update sort labels
+            const sortLabel = document.querySelector('.sorting-options .filter-label');
+            if (sortLabel) sortLabel.textContent = translations[currentLanguage].sortBy;
+            
+            // Update sort buttons
+            const sortButtons = document.querySelectorAll('.sort-button');
+            if (sortButtons[0]) sortButtons[0].textContent = translations[currentLanguage].alphabetical;
+            if (sortButtons[1]) sortButtons[1].textContent = translations[currentLanguage].prepTime;
+            if (sortButtons[2]) sortButtons[2].textContent = translations[currentLanguage].cookTime;
+            if (sortButtons[3]) sortButtons[3].textContent = translations[currentLanguage].difficultySort;
+            if (sortButtons[4]) sortButtons[4].textContent = translations[currentLanguage].calories;
             
             // Update footer
             const footer = document.querySelector('footer');
-            if (footer) {
-                footer.textContent = translations[currentLanguage].footer;
-            }
+            if (footer) footer.textContent = translations[currentLanguage].footer;
+            
+            // Update document title
+            document.title = translations[currentLanguage].mainTitle;
         }
         
         // Set up language toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Find the language toggle button
+            console.log("DOM fully loaded, setting up language toggle");
+            
+            // Find language toggle button
             const languageToggle = document.getElementById('languageToggle');
             
             if (languageToggle) {
+                console.log("Found language toggle button");
+                
                 // Add click event listener
                 languageToggle.addEventListener('click', function() {
+                    console.log("Language toggle clicked");
+                    
                     // Toggle language
                     currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+                    console.log("Switched to:", currentLanguage);
                     
                     // Update UI text
                     updateLanguage();
                     
                     // Update toggle button text
-                    languageToggle.textContent = currentLanguage === 'el' ? 'CHANGE LANGUAGE / ΑΛΛΑΓΗ ΓΛΩΣΣΑΣ' : 'ΑΛΛΑΓΗ ΓΛΩΣΣΑΣ / CHANGE LANGUAGE';
+                    languageToggle.textContent = currentLanguage === 'el' ? 'English' : 'Ελληνικά';
                 });
+                
+                // Set initial button text
+                languageToggle.textContent = 'English';
+            } else {
+                console.error("Language toggle button not found!");
             }
         });
     </script>
