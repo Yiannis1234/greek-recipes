@@ -8,6 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="greek_recipes.css">
     <link rel="stylesheet" href="emoji_styles.css">
+    <!-- EMERGENCY TEXT FIX - Force black text everywhere -->
+    <style>
+        /* Force ALL text to be black or dark color */
+        * {
+            color: #000000 !important;
+        }
+        
+        /* Specific recipe title fix */
+        .recipe-card h3,
+        .recipe-header-text h3,
+        .recipe-title,
+        .recipes-grid .recipe-card h3,
+        .food-emoji-large + div,
+        .recipe-card .recipe-content > div:first-child {
+            color: #000000 !important;
+            background-color: #FFFFFF !important;
+            border: 3px solid #000000 !important;
+            font-weight: 900 !important;
+            font-size: 24px !important;
+            text-align: center !important;
+            padding: 15px !important;
+            margin: 10px auto !important;
+            width: 90% !important;
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
     <div class="bg-pattern"></div>
