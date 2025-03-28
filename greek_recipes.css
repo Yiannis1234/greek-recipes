@@ -421,118 +421,132 @@ h2 .fas, h3 .fas, h4 .fas {
     margin-right: 8px;
 }
 
-/* COMPLETE BUTTON REDESIGN WITH MAXIMUM VISIBILITY */
+/* ULTIMATE VISIBILITY OVERRIDE - Extremely High Contrast */
 button, .btn, .primary-button, .secondary-button,
 .ingredient-chip, .difficulty-filter, .time-filter, .sort-button, 
 .preference-option {
-    /* Bright white background for maximum contrast */
-    background-color: #FFFFFF !important;
-    /* Very thick black border with green outline for visibility */
-    border: 4px solid #000000 !important;
-    outline: 2px solid #6bb166 !important;
-    /* Black text that's always visible */
-    color: #000000 !important;
-    /* Bold text for better readability */
-    font-weight: bold !important;
-    /* Larger text size */
-    font-size: 18px !important;
-    /* Generous padding for larger click targets */
-    padding: 15px 20px !important;
-    /* Rounded corners for distinction */
-    border-radius: 10px !important;
-    /* Clear drop shadow for depth */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    /* Pure black background */
+    background-color: #000000 !important;
+    /* Bright white text */
+    color: #FFFFFF !important;
+    /* Heavy white border for maximum visibility */
+    border: 5px solid #FFFFFF !important;
+    outline: 2px solid #000000 !important;
+    /* Extra bold text */
+    font-weight: 900 !important;
+    /* Very large text size */
+    font-size: 22px !important;
+    /* Maximum padding for easier clicking */
+    padding: 15px 25px !important;
+    /* Sharp corners for distinction */
+    border-radius: 0px !important;
+    /* Heavy drop shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5) !important;
     /* No transitions */
     transition: none !important;
-    /* Ensure visibility */
+    /* Full opacity */
     opacity: 1 !important;
-    /* Proper margin between elements */
-    margin: 8px !important;
-    /* No transform effects that might hide content */
+    /* Proper spacing */
+    margin: 10px !important;
+    /* No transforms */
     transform: none !important;
-    /* No text shadow to keep text clear */
+    /* No text shadow */
     text-shadow: none !important;
     /* Clear letter spacing */
-    letter-spacing: 0.5px !important;
-    /* Fix element height issues */
-    min-height: 50px !important;
-    /* Important display settings */
+    letter-spacing: 1px !important;
+    /* Fix height issues */
+    min-height: 60px !important;
+    /* Display settings */
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    /* Ensure no text wrapping */
+    white-space: nowrap !important;
 }
 
-/* Special state for active buttons */
+/* Active state - invert colors */
 .difficulty-filter.active, .time-filter.active, .sort-button.active {
-    /* Invert colors for active state */
-    background-color: #000000 !important;
-    color: #FFFFFF !important;
-    border: 4px solid #FFFFFF !important;
-    outline: 2px solid #6bb166 !important;
+    /* White background */
+    background-color: #FFFFFF !important;
+    /* Black text */
+    color: #000000 !important;
+    /* Black border */
+    border: 5px solid #000000 !important;
 }
 
-/* Hover state - subtle change with no text hiding */
+/* Hover state - subtle change but maintain visibility */
 button:hover, .btn:hover, .primary-button:hover, .secondary-button:hover,
 .ingredient-chip:hover, .difficulty-filter:hover, .time-filter:hover, .sort-button:hover, 
 .preference-option:hover {
-    /* Slightly darker border only */
-    border-color: #6bb166 !important;
-    /* Very subtle shadow change */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
-    /* No color changes or transforms that could hide text */
-    transform: none !important;
-    /* No background color change */
-    background-color: #FFFFFF !important;
-    /* Text stays black */
-    color: #000000 !important;
-}
-
-/* Handle active button hover states */
-.difficulty-filter.active:hover, .time-filter.active:hover, .sort-button.active:hover {
-    background-color: #000000 !important;
+    /* Add dark gray border */
+    border-color: #666666 !important;
+    /* Slightly lighter black background */
+    background-color: #333333 !important;
+    /* Keep white text */
     color: #FFFFFF !important;
 }
 
-/* Recipe categories for better visibility */
-.recipe-categories span {
-    background-color: #FFFFFF !important;
+/* Active button hover */
+.difficulty-filter.active:hover, .time-filter.active:hover, .sort-button.active:hover {
+    /* Slightly off-white background */
+    background-color: #EEEEEE !important;
+    /* Keep black text */
     color: #000000 !important;
-    border: 2px solid #000000 !important;
-    padding: 5px 10px !important;
-    border-radius: 5px !important;
+}
+
+/* Recipe categories */
+.recipe-categories span {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
+    padding: 8px 15px !important;
+    border-radius: 0px !important;
     font-weight: bold !important;
     display: inline-block !important;
-    margin: 3px !important;
+    margin: 5px !important;
+    font-size: 18px !important;
 }
 
-/* Reset ALL transitions and animations site-wide */
-*, *::before, *::after {
-    transition: none !important;
-    animation: none !important;
-}
-
-/* Recipe meta items with maximum visibility */
+/* Recipe meta items */
 .meta-item, .recipe-meta {
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
-    border: 2px solid #000000 !important;
-    border-radius: 5px !important;
-    padding: 8px !important;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
+    border-radius: 0px !important;
+    padding: 10px !important;
     margin: 5px !important;
     font-weight: bold !important;
+    font-size: 18px !important;
 }
 
-/* Headers with maximum visibility */
+/* Headers with ultra visibility */
 h1, h2, h3, h4, h5, h6 {
     color: #000000 !important;
     background-color: #FFFFFF !important;
-    padding: 10px !important;
-    border: 2px solid #000000 !important;
-    border-radius: 5px !important;
-    font-weight: bold !important;
+    padding: 15px !important;
+    border: 4px solid #000000 !important;
+    border-radius: 0px !important;
+    font-weight: 900 !important;
     display: inline-block !important;
-    margin: 10px !important;
+    margin: 15px !important;
     text-shadow: none !important;
+    font-size: 28px !important;
+}
+
+/* Input fields with high contrast */
+input, select, textarea {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 15px !important;
+}
+
+/* Disable ALL transitions and animations */
+*, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
 }
 
 .logo .fas {
