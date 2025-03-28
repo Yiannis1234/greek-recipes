@@ -1267,4 +1267,73 @@ button, .btn, .primary-button {
 /* Green background for dropdowns */
 option {
     background-color: #e8f5e9 !important;
+}
+
+/* EMERGENCY GREEN BACKGROUND FIX */
+html, body, .container, .recipe-container, .screen, 
+.ingredients-section, .preferences-section, .input-group,
+.quick-ingredients, .selected-ingredients, div, section {
+    background-color: #e8f5e9 !important;
+}
+
+/* Force all boxes to be green */
+*, *::before, *::after {
+    background-color: #e8f5e9 !important;
+}
+
+/* Override for specific elements that must be green */
+.recipe-container,
+.ingredients-section, 
+.preferences-section,
+.selected-ingredients-container,
+.quick-ingredients,
+.preference-option,
+.filter-container,
+.input-group,
+.recipe-card,
+button,
+input,
+.ingredient-chip,
+.difficulty-filter, 
+.time-filter, 
+.sort-button,
+.feature-item,
+.selected-ingredients {
+    background-color: #e8f5e9 !important;
+    border: 1px solid #6bb166 !important;
+}
+
+/* Extra contrast elements */
+.preference-option,
+.ingredient-chip, 
+.difficulty-filter, 
+.time-filter, 
+.sort-button {
+    background-color: #d5ecd2 !important;
+}
+
+/* Special case for buttons */
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    border-color: #4a8745 !important;
+}
+
+/* Secondary button */
+.secondary-button {
+    background-color: #e8f5e9 !important;
+    color: #4a8745 !important;
+    border: 1px solid #6bb166 !important;
+}
+
+/* Active elements */
+.difficulty-filter.active, 
+.time-filter.active, 
+.sort-button.active {
+    background-color: #6bb166 !important;
+    color: #ffffff !important;
+}
+
+/* Critical fix for header sections */
+.logo, h1, h2, h3, p, span, div {
+    color: #000000 !important;
 } 
