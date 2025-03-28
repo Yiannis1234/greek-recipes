@@ -1336,4 +1336,94 @@ button, .btn, .primary-button {
 /* Critical fix for header sections */
 .logo, h1, h2, h3, p, span, div {
     color: #000000 !important;
+}
+
+/* Critical contrast fix - Make ALL text permanently visible */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button, 
+.preference-option, .btn, button, .primary-button, .secondary-button {
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #6bb166 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Active state buttons */
+.difficulty-filter.active, .time-filter.active, .sort-button.active,
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+    border: 2px solid #4a8745 !important;
+}
+
+/* Remove all hover transitions that might hide text */
+.ingredient-chip:hover, .difficulty-filter:hover, .time-filter:hover, 
+.sort-button:hover, .btn:hover, button:hover, 
+.primary-button:hover, .secondary-button:hover {
+    transform: none !important;
+    background-color: #d5ecd2 !important;
+    color: #000000 !important;
+    border-color: #4a8745 !important;
+}
+
+/* Make active buttons stay visible on hover */
+.difficulty-filter.active:hover, .time-filter.active:hover, 
+.sort-button.active:hover, button:hover, .btn:hover, .primary-button:hover {
+    background-color: #4a8745 !important;
+    color: #FFFFFF !important;
+}
+
+/* Override any transitions or animations that might affect visibility */
+*, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure maximum contrast for all buttons */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button,
+.preference-option, button, .btn, .primary-button, .secondary-button {
+    font-size: 16px !important;
+    padding: 10px 20px !important;
+    margin: 5px !important;
+    border-radius: 8px !important;
+}
+
+/* Force very high contrast */
+body, html {
+    background-color: #e8f5e9 !important;
+    color: #000000 !important;
+}
+
+/* Remove any hover effects from recipe cards that might hide text */
+.recipe-card:hover, .recipe-card:hover .recipe-header {
+    transform: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Remove all transitions that might cause text visibility issues */
+.screen, .food-emoji, .food-emoji-large, 
+.recipe-container, .recipe-card {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure recipe metadata is always visible */
+.meta-item, .recipe-meta, .recipe-categories span {
+    color: #000000 !important;
+    font-weight: bold !important;
+    background-color: #FFFFFF !important;
+}
+
+/* Make all headers bold and high contrast */
+h1, h2, h3, h4, h5, h6 {
+    color: #006400 !important; /* Dark green for headers */
+    font-weight: bold !important;
+    text-shadow: none !important;
+}
+
+/* Force all buttons to be very visible */
+button, .btn, .primary-button, .secondary-button,
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button {
+    border-width: 3px !important;
 } 
