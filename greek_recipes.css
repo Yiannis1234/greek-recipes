@@ -1708,4 +1708,71 @@ h4 {
     text-align: center !important;
     margin: 10px 0 !important;
     padding: 0 !important;
+}
+
+/* EMERGENCY FIX FOR BLANK TITLE BOX - TARGET EXACT ELEMENTS */
+.recipe-card .recipe-content > div:first-child,
+.recipe-card .recipe-header + div,
+.food-emoji-large + div,
+.recipe-header-text h3 {
+    color: #000000 !important;
+    font-size: 36px !important;
+    font-weight: 900 !important;
+    font-family: Arial, sans-serif !important;
+    background-color: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    display: block !important;
+    width: 90% !important;
+    text-align: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1.3 !important;
+    word-spacing: normal !important;
+    text-indent: 0 !important;
+    text-shadow: none !important;
+}
+
+/* Force title text to be visible using multiple approaches */
+.recipe-title,
+.recipe-name,
+.recipe-card h3,
+.recipe-content h3,
+.food-emoji-large + div,
+.recipe-card .recipe-content > div:first-child {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    background: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    text-align: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Specifically fix Μανιτάρια Πλευρώτους title */
+.recipe-card:contains("Μανιτάρια") h3,
+.recipe-card:contains("Πλευρώτους") h3,
+.recipe-card .recipe-content > div:contains("Μανιτάρια"),
+.recipe-card .recipe-content > div:contains("Πλευρώτους") {
+    color: #000000 !important;
+    font-size: 36px !important;
+    background: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    text-align: center !important;
+    font-weight: 900 !important;
+    display: block !important;
 } 
