@@ -1195,4 +1195,76 @@ button, .btn, .primary-button {
 /* Final emergency override for any remaining invisible text */
 [class*="text"], [class*="label"], [class*="title"], [class*="heading"], [class*="content"] {
     color: #000000 !important;
+}
+
+/* Green background for input fields */
+input[type="text"], input[type="search"], select, textarea, datalist {
+    background-color: #e8f5e9 !important; /* Light green background */
+    border: 1px solid #6bb166 !important;
+}
+
+/* Green background for containers and boxes */
+.recipe-container, .ingredients-section, .preferences-section, 
+.selected-ingredients, .ingredient-tag, .quick-ingredients,
+.input-group, .preference-options, .filter-container {
+    background-color: #e8f5e9 !important; /* Light green background */
+}
+
+/* Green background for recipe cards */
+.recipes-grid .recipe-card, .recipe-card .nutrition, 
+.recipe-card .recipe-content {
+    background-color: #e8f5e9 !important; /* Light green background */
+}
+
+/* Green background for interactive elements */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button,
+.preference-option {
+    background-color: #d5ecd2 !important; /* Slightly darker green for contrast */
+}
+
+/* Green style for active elements */
+.difficulty-filter.active, .time-filter.active, .sort-button.active {
+    background-color: #6bb166 !important;
+    color: white !important;
+    border-color: #4a8745 !important;
+}
+
+/* Green background for buttons */
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    border-color: #4a8745 !important;
+}
+
+.secondary-button {
+    background-color: #e8f5e9 !important;
+    color: #4a8745 !important;
+    border-color: #6bb166 !important;
+}
+
+/* Green background for results section */
+.no-results, .relaxed-criteria-notice {
+    background-color: #e8f5e9 !important;
+    border-color: #6bb166 !important;
+}
+
+/* Ensure green scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e8f5e9;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6bb166;
+    border-radius: 5px;
+}
+
+/* Make sure text remains visible on green backgrounds */
+.ingredient-chip, .ingredient-tag, .difficulty-filter, .time-filter, 
+.sort-button, .preference-option, .recipe-card {
+    color: #000000 !important;
+}
+
+/* Green background for dropdowns */
+option {
+    background-color: #e8f5e9 !important;
 } 
