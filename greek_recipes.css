@@ -1,0 +1,1804 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+}
+
+:root {
+    --primary-color: #6bb166;
+    --primary-light: #8bc285;
+    --primary-gradient: linear-gradient(135deg, #6bb166 0%, #8bc285 100%);
+    --secondary-color: #94c98f;
+    --accent-color: #4a8745;
+    --accent-gradient: linear-gradient(135deg, #4a8745 0%, #6bb166 100%);
+    --light-bg: #f7fafc;
+    --dark-text: #2d3748;
+    --medium-text: #4a5568;
+    --light-text: #718096;
+    --border-color: #e2e8f0;
+    --success-color: #38a169;
+    --error-color: #e53e3e;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --card-gradient-1: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+    --card-gradient-2: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    --card-gradient-3: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    --card-gradient-4: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    --card-gradient-5: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+body {
+    background: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #000000 !important;
+    position: relative;
+}
+
+.bg-pattern {
+    display: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.recipe-container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.recipe-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-gradient);
+}
+
+.recipe-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.screen {
+    display: none;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+    font-size: 3rem;
+    color: var(--primary-color) !important;
+    margin-bottom: 20px;
+    text-shadow: none;
+    animation: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo::before {
+    content: "🥗";
+    font-size: 2.5rem;
+    color: var(--primary-color) !important;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color) !important;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.2em;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+    transform: scaleX(0.5);
+    transform-origin: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: var(--primary-light);
+    opacity: 0.5;
+}
+
+h3 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+h4 {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+p {
+    color: #000000 !important;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--light-text);
+    font-size: 0.9em;
+    z-index: 1;
+}
+
+.welcome-emoji-foods {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    height: 180px;
+}
+
+.food-emoji {
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.food-emoji:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-color);
+}
+
+.recipe-header-emoji {
+    height: 200px;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    margin: -20px -20px 15px -20px;
+    overflow: hidden;
+    border-bottom: 3px solid var(--primary-light);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e0e6ed 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.food-emoji-large {
+    font-size: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center;
+    animation: float 6s ease-in-out infinite;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.recipe-header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 70px 20px 15px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+    color: white;
+}
+
+.recipe-header-overlay h3 {
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    border-left: none;
+    padding-left: 0;
+}
+
+.recipe-categories {
+    display: flex;
+    gap: 8px;
+}
+
+.category-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    color: white;
+    font-size: 0.8em;
+    transition: all 0.3s ease;
+}
+
+.category-icon:hover {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.category-icon.vegetarian {
+    background: rgba(107, 177, 102, 0.4);
+}
+
+.category-icon.vegan {
+    background: rgba(74, 135, 69, 0.4);
+}
+
+.category-icon.gluten-free {
+    background: rgba(138, 201, 133, 0.4);
+}
+
+.category-icon.low-carb {
+    background: rgba(148, 201, 143, 0.4);
+}
+
+.recipe-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85em;
+    color: var(--medium-text);
+}
+
+.meta-item i {
+    color: var(--primary-color);
+}
+
+.meta-item.difficulty {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.meta-item.difficulty.easy {
+    background-color: rgba(107, 177, 102, 0.1);
+    color: var(--primary-color);
+}
+
+.meta-item.difficulty.medium {
+    background-color: rgba(246, 173, 85, 0.1);
+    color: #dd6b20;
+}
+
+.meta-item.difficulty.hard {
+    background-color: rgba(229, 62, 62, 0.1);
+    color: #e53e3e;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--light-bg);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.no-results i {
+    font-size: 3em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.relaxed-criteria-notice {
+    background-color: #fff8e6;
+    border-left: 4px solid #ffd56a;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.relaxed-criteria-notice i {
+    color: #e6ae00;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.relaxed-criteria-notice p {
+    margin: 0;
+    font-size: 14px;
+    color: #7a6826;
+}
+
+.recipe-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.recipe-card:hover {
+    transform: translateY(-10px) scale(1.01);
+}
+
+.recipe-card:hover .recipe-header {
+    transform: scale(1.03);
+}
+
+.recipe-header {
+    transition: transform 0.4s ease;
+}
+
+.fas {
+    display: inline-block;
+}
+
+h2 .fas, h3 .fas, h4 .fas {
+    margin-right: 8px;
+}
+
+/* ULTIMATE VISIBILITY OVERRIDE - Extremely High Contrast */
+button, .btn, .primary-button, .secondary-button,
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button, 
+.preference-option {
+    /* Pure black background */
+    background-color: #000000 !important;
+    /* Bright white text */
+    color: #FFFFFF !important;
+    /* Heavy white border for maximum visibility */
+    border: 5px solid #FFFFFF !important;
+    outline: 2px solid #000000 !important;
+    /* Extra bold text */
+    font-weight: 900 !important;
+    /* Very large text size */
+    font-size: 22px !important;
+    /* Maximum padding for easier clicking */
+    padding: 15px 25px !important;
+    /* Sharp corners for distinction */
+    border-radius: 0px !important;
+    /* Heavy drop shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5) !important;
+    /* No transitions */
+    transition: none !important;
+    /* Full opacity */
+    opacity: 1 !important;
+    /* Proper spacing */
+    margin: 10px !important;
+    /* No transforms */
+    transform: none !important;
+    /* No text shadow */
+    text-shadow: none !important;
+    /* Clear letter spacing */
+    letter-spacing: 1px !important;
+    /* Fix height issues */
+    min-height: 60px !important;
+    /* Display settings */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* Ensure no text wrapping */
+    white-space: nowrap !important;
+}
+
+/* Active state - invert colors */
+.difficulty-filter.active, .time-filter.active, .sort-button.active {
+    /* White background */
+    background-color: #FFFFFF !important;
+    /* Black text */
+    color: #000000 !important;
+    /* Black border */
+    border: 5px solid #000000 !important;
+}
+
+/* Hover state - subtle change but maintain visibility */
+button:hover, .btn:hover, .primary-button:hover, .secondary-button:hover,
+.ingredient-chip:hover, .difficulty-filter:hover, .time-filter:hover, .sort-button:hover, 
+.preference-option:hover {
+    /* Add dark gray border */
+    border-color: #666666 !important;
+    /* Slightly lighter black background */
+    background-color: #333333 !important;
+    /* Keep white text */
+    color: #FFFFFF !important;
+}
+
+/* Active button hover */
+.difficulty-filter.active:hover, .time-filter.active:hover, .sort-button.active:hover {
+    /* Slightly off-white background */
+    background-color: #EEEEEE !important;
+    /* Keep black text */
+    color: #000000 !important;
+}
+
+/* Recipe categories */
+.recipe-categories span {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
+    padding: 8px 15px !important;
+    border-radius: 0px !important;
+    font-weight: bold !important;
+    display: inline-block !important;
+    margin: 5px !important;
+    font-size: 18px !important;
+}
+
+/* Recipe meta items */
+.meta-item, .recipe-meta {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
+    border-radius: 0px !important;
+    padding: 10px !important;
+    margin: 5px !important;
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+
+/* Headers with ultra visibility */
+h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 10px !important;
+    border-radius: 0 !important;
+    font-weight: 900 !important;
+    display: block !important;
+    margin: 15px auto !important;
+    text-shadow: none !important;
+    font-size: 28px !important;
+    box-shadow: none !important;
+}
+
+h1 {
+    font-size: 32px !important;
+    color: #006400 !important;
+}
+
+h2 {
+    font-size: 28px !important;
+    color: #006400 !important;
+}
+
+h3 {
+    font-size: 24px !important;
+    color: #006400 !important;
+}
+
+h4 {
+    font-size: 20px !important;
+    color: #006400 !important;
+}
+
+/* Input fields with high contrast */
+input, select, textarea {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 4px solid #000000 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 15px !important;
+}
+
+/* Disable ALL transitions and animations */
+*, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+.logo .fas {
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid rgba(30, 60, 114, 0.1);
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+}
+
+footer {
+    position: relative;
+    padding-top: 30px;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    border-radius: 3px;
+}
+
+/* Remove nutrition API styles */
+.recipe-card .nutrition {
+    margin-top: 15px;
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    color: var(--light-text);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Remove these CSS classes since they're related to the nutrition API */
+
+.features-list {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--box-shadow);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 5px;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.feature-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.api-credit {
+    margin-top: 10px;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.api-credit a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.api-credit a:hover {
+    color: white;
+}
+
+.recipe-header-text {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    margin: -20px -20px 15px -20px;
+    border-bottom: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.recipe-header-text::before {
+    display: none;
+}
+
+.recipe-header-text h3 {
+    color: white;
+    margin-bottom: 5px;
+    font-weight: 500;
+    text-shadow: none;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.recipes-grid .recipe-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.recipes-grid .recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.recipes-grid .recipe-card .recipe-header {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.recipes-grid .recipe-card .recipe-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+}
+
+.recipes-grid .recipe-card .recipe-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipes-grid .recipe-card h3 {
+    font-size: 1.3rem;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.recipes-grid .recipe-card p {
+    color: var(--medium-text);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.recipes-grid .recipe-card .recipe-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.recipes-grid .recipe-card .recipe-meta .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: var(--medium-text);
+}
+
+.recipes-grid .recipe-card .recipe-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.recipes-grid .recipe-card .recipe-categories .category-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.recipes-grid .recipe-card .ingredient-list,
+.recipes-grid .recipe-card .instructions {
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.recipes-grid .recipe-card .ingredient-list li,
+.recipes-grid .recipe-card .instructions li {
+    margin-bottom: 8px;
+    color: var(--dark-text);
+    font-size: 0.95rem;
+}
+
+.recipes-grid .recipe-card .nutrition {
+    background-color: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: auto;
+}
+
+.recipes-grid .recipe-card .nutrition h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.recipes-grid .recipe-card .nutrition-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.recipes-grid .recipe-card .nutrition-info p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+}
+
+.ingredients-section {
+    margin-bottom: 30px;
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.ingredients-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-light), transparent);
+    opacity: 0.5;
+}
+
+.ingredients-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: var(--border-color);
+}
+
+.preferences-section {
+    margin-bottom: 30px;
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.preferences-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    opacity: 0.5;
+}
+
+.preferences-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: var(--border-color);
+}
+
+.ingredient-chip {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.ingredient-chip:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(30, 60, 114, 0.2);
+    border-color: var(--primary-color);
+}
+
+.ingredient-tag {
+    background: var(--light-bg);
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: tag-appear 0.3s forwards ease-out;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.ingredient-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes smoothAppear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.feature-item {
+    animation: smoothAppear 0.5s forwards;
+    animation-delay: calc(var(--item-index, 0) * 0.1s);
+    opacity: 0;
+}
+
+.sorting-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.sort-button {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sort-button:hover, .sort-button.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.difficulty-filter, .time-filter {
+    background-color: white;
+    color: var(--medium-text);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.difficulty-filter:hover, .time-filter:hover {
+    background-color: #f0f4f8;
+    border-color: var(--primary-color);
+}
+
+.difficulty-filter.active, .time-filter.active {
+    background-color: var(--primary-color);
+    color: white !important;
+    border-color: var(--primary-color);
+}
+
+/* Improved preference options */
+.preference-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.preference-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.preference-option:hover {
+    background-color: #f0f4f8;
+    border-color: var(--primary-color);
+}
+
+.preference-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.preference-option label {
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* Fix for sorting buttons */
+.sort-button {
+    background-color: white;
+    color: var(--medium-text);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.sort-button:hover {
+    background-color: #f0f4f8;
+    border-color: var(--primary-color);
+}
+
+.sort-button.active {
+    background-color: var(--primary-color);
+    color: white !important;
+    border-color: var(--primary-color);
+}
+
+/* Fix for ingredient chips */
+.ingredient-chip {
+    background-color: white;
+    color: var(--medium-text);
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    display: inline-block;
+    border: 1px solid var(--border-color);
+}
+
+.ingredient-chip:hover {
+    background-color: #f0f4f8;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Primary and secondary buttons */
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.primary-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.secondary-button {
+    background-color: white;
+    color: var(--accent-color);
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 1px solid var(--accent-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.secondary-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Input styles */
+.input-group input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--dark-text);
+    background-color: white;
+}
+
+/* Fix for text visibility in white boxes */
+p, h1, h2, h3, h4, span, label, .ingredient-chip, .ingredient-tag, .difficulty-filter, .time-filter, .sort-button {
+    color: var(--dark-text);
+}
+
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button {
+    color: var(--dark-text) !important;
+}
+
+.ingredient-tag {
+    color: var(--dark-text) !important;
+    background-color: #f0f4f8;
+}
+
+.selected-ingredients p.empty-message {
+    color: var(--medium-text) !important;
+    opacity: 0.8;
+}
+
+.filter-label {
+    color: var(--dark-text) !important;
+    font-weight: 500;
+}
+
+.preference-option label {
+    color: var(--dark-text) !important;
+}
+
+.recipe-card .ingredient-list li, 
+.recipe-card .instructions li,
+.recipe-card .nutrition-info p {
+    color: var(--dark-text) !important;
+}
+
+/* Additional contrast fixes */
+.feature-item span {
+    color: var(--dark-text) !important;
+}
+
+/* Ensure buttons have visible text */
+button, .btn, .primary-button, .secondary-button {
+    color: white;
+}
+
+.secondary-button {
+    color: var(--accent-color);
+}
+
+.secondary-button:hover {
+    color: white;
+}
+
+/* Recipe card content */
+.recipes-grid .recipe-card h3 {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.recipe-header-text h3 {
+    color: white !important;
+}
+
+/* Ensure the text shows with high contrast */
+input, select, textarea {
+    color: var(--dark-text);
+}
+
+/* Fix for category section */
+.recipe-categories span {
+    color: var(--medium-text);
+}
+
+/* Fix dropdown text */
+#ingredients-list option {
+    color: var(--dark-text);
+}
+
+/* Critical visibility fixes */
+body, p, h1, h2, h3, h4, h5, h6, span, div, label, input, textarea, select, button, a, li, td, th {
+    color: #000000 !important;
+}
+
+.logo, .logo::before {
+    color: var(--primary-color) !important;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color) !important;
+}
+
+p {
+    color: #000000 !important;
+}
+
+.feature-item span {
+    color: #000000 !important;
+}
+
+input::placeholder {
+    color: #777777 !important;
+    opacity: 1 !important;
+}
+
+/* Special case for buttons */
+button, .btn, .primary-button {
+    color: #ffffff !important;
+}
+
+.secondary-button {
+    color: var(--accent-color) !important;
+}
+
+.secondary-button:hover {
+    color: #ffffff !important;
+}
+
+/* Fix for the chips, filters, and tags */
+.ingredient-chip, .ingredient-tag, .difficulty-filter, .time-filter, .sort-button {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.difficulty-filter.active, .time-filter.active, .sort-button.active {
+    color: #ffffff !important;
+    background-color: var(--primary-color) !important;
+}
+
+.preference-option label {
+    color: #000000 !important;
+}
+
+.filter-label {
+    color: #000000 !important;
+    font-weight: 500;
+}
+
+/* Fix for recipe card content */
+.recipe-card h3, .recipe-card p, .recipe-card li, .recipe-card span {
+    color: #000000 !important;
+}
+
+.recipe-card .nutrition-info p {
+    color: #000000 !important;
+}
+
+/* Only when text is on a dark background, use white */
+.recipe-header-overlay h3, 
+.recipe-header-text h3,
+.category-icon {
+    color: #ffffff !important;
+}
+
+/* Force black text for generated content */
+#selected-ingredients .ingredient-tag {
+    color: #000000 !important;
+    background-color: #f0f4f8 !important;
+}
+
+/* Override for the empty message */
+.selected-ingredients p.empty-message {
+    color: #333333 !important;
+}
+
+/* Ensure nutrition section text is visible */
+.nutrition h4 {
+    color: var(--primary-color) !important;
+}
+
+.nutrition-info p {
+    color: #000000 !important;
+}
+
+/* Make sure ingredient metadata is visible */
+.recipe-meta .meta-item {
+    color: #000000 !important;
+}
+
+/* Final emergency override for any remaining invisible text */
+[class*="text"], [class*="label"], [class*="title"], [class*="heading"], [class*="content"] {
+    color: #000000 !important;
+}
+
+/* Green background for input fields */
+input[type="text"], input[type="search"], select, textarea, datalist {
+    background-color: #e8f5e9 !important; /* Light green background */
+    border: 1px solid #6bb166 !important;
+}
+
+/* Green background for containers and boxes */
+.recipe-container, .ingredients-section, .preferences-section, 
+.selected-ingredients, .ingredient-tag, .quick-ingredients,
+.input-group, .preference-options, .filter-container {
+    background-color: #e8f5e9 !important; /* Light green background */
+}
+
+/* Green background for recipe cards */
+.recipes-grid .recipe-card, .recipe-card .nutrition, 
+.recipe-card .recipe-content {
+    background-color: #e8f5e9 !important; /* Light green background */
+}
+
+/* Green background for interactive elements */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button,
+.preference-option {
+    background-color: #d5ecd2 !important; /* Slightly darker green for contrast */
+}
+
+/* Green style for active elements */
+.difficulty-filter.active, .time-filter.active, .sort-button.active {
+    background-color: #6bb166 !important;
+    color: white !important;
+    border-color: #4a8745 !important;
+}
+
+/* Green background for buttons */
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    border-color: #4a8745 !important;
+}
+
+.secondary-button {
+    background-color: #e8f5e9 !important;
+    color: #4a8745 !important;
+    border-color: #6bb166 !important;
+}
+
+/* Green background for results section */
+.no-results, .relaxed-criteria-notice {
+    background-color: #e8f5e9 !important;
+    border-color: #6bb166 !important;
+}
+
+/* Ensure green scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e8f5e9;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6bb166;
+    border-radius: 5px;
+}
+
+/* Make sure text remains visible on green backgrounds */
+.ingredient-chip, .ingredient-tag, .difficulty-filter, .time-filter, 
+.sort-button, .preference-option, .recipe-card {
+    color: #000000 !important;
+}
+
+/* Green background for dropdowns */
+option {
+    background-color: #e8f5e9 !important;
+}
+
+/* EMERGENCY GREEN BACKGROUND FIX */
+html, body, .container, .recipe-container, .screen, 
+.ingredients-section, .preferences-section, .input-group,
+.quick-ingredients, .selected-ingredients, div, section {
+    background-color: #e8f5e9 !important;
+}
+
+/* Force all boxes to be green */
+*, *::before, *::after {
+    background-color: #e8f5e9 !important;
+}
+
+/* Override for specific elements that must be green */
+.recipe-container,
+.ingredients-section, 
+.preferences-section,
+.selected-ingredients-container,
+.quick-ingredients,
+.preference-option,
+.filter-container,
+.input-group,
+.recipe-card,
+button,
+input,
+.ingredient-chip,
+.difficulty-filter, 
+.time-filter, 
+.sort-button,
+.feature-item,
+.selected-ingredients {
+    background-color: #e8f5e9 !important;
+    border: 1px solid #6bb166 !important;
+}
+
+/* Extra contrast elements */
+.preference-option,
+.ingredient-chip, 
+.difficulty-filter, 
+.time-filter, 
+.sort-button {
+    background-color: #d5ecd2 !important;
+}
+
+/* Special case for buttons */
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    border-color: #4a8745 !important;
+}
+
+/* Secondary button */
+.secondary-button {
+    background-color: #e8f5e9 !important;
+    color: #4a8745 !important;
+    border: 1px solid #6bb166 !important;
+}
+
+/* Active elements */
+.difficulty-filter.active, 
+.time-filter.active, 
+.sort-button.active {
+    background-color: #6bb166 !important;
+    color: #ffffff !important;
+}
+
+/* Critical fix for header sections */
+.logo, h1, h2, h3, p, span, div {
+    color: #000000 !important;
+}
+
+/* Critical contrast fix - Make ALL text permanently visible */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button, 
+.preference-option, .btn, button, .primary-button, .secondary-button {
+    color: #000000 !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #6bb166 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Active state buttons */
+.difficulty-filter.active, .time-filter.active, .sort-button.active,
+button, .btn, .primary-button {
+    background-color: #6bb166 !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+    border: 2px solid #4a8745 !important;
+}
+
+/* Remove all hover transitions that might hide text */
+.ingredient-chip:hover, .difficulty-filter:hover, .time-filter:hover, 
+.sort-button:hover, .btn:hover, button:hover, 
+.primary-button:hover, .secondary-button:hover {
+    transform: none !important;
+    background-color: #d5ecd2 !important;
+    color: #000000 !important;
+    border-color: #4a8745 !important;
+}
+
+/* Make active buttons stay visible on hover */
+.difficulty-filter.active:hover, .time-filter.active:hover, 
+.sort-button.active:hover, button:hover, .btn:hover, .primary-button:hover {
+    background-color: #4a8745 !important;
+    color: #FFFFFF !important;
+}
+
+/* Override any transitions or animations that might affect visibility */
+*, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure maximum contrast for all buttons */
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button,
+.preference-option, button, .btn, .primary-button, .secondary-button {
+    font-size: 16px !important;
+    padding: 10px 20px !important;
+    margin: 5px !important;
+    border-radius: 8px !important;
+}
+
+/* Force very high contrast */
+body, html {
+    background-color: #e8f5e9 !important;
+    color: #000000 !important;
+}
+
+/* Remove any hover effects from recipe cards that might hide text */
+.recipe-card:hover, .recipe-card:hover .recipe-header {
+    transform: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Remove all transitions that might cause text visibility issues */
+.screen, .food-emoji, .food-emoji-large, 
+.recipe-container, .recipe-card {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure recipe metadata is always visible */
+.meta-item, .recipe-meta, .recipe-categories span {
+    color: #000000 !important;
+    font-weight: bold !important;
+    background-color: #FFFFFF !important;
+}
+
+/* Make all headers bold and high contrast */
+h1, h2, h3, h4, h5, h6 {
+    color: #006400 !important; /* Dark green for headers */
+    font-weight: bold !important;
+    text-shadow: none !important;
+}
+
+/* Force all buttons to be very visible */
+button, .btn, .primary-button, .secondary-button,
+.ingredient-chip, .difficulty-filter, .time-filter, .sort-button {
+    border-width: 3px !important;
+}
+
+/* Fix for white title boxes - remove box styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 10px !important;
+    border-radius: 0 !important;
+    font-weight: 900 !important;
+    display: block !important;
+    margin: 15px auto !important;
+    text-shadow: none !important;
+    font-size: 28px !important;
+    box-shadow: none !important;
+}
+
+h1 {
+    font-size: 32px !important;
+    color: #006400 !important;
+}
+
+h2 {
+    font-size: 28px !important;
+    color: #006400 !important;
+}
+
+h3 {
+    font-size: 24px !important;
+    color: #006400 !important;
+}
+
+h4 {
+    font-size: 20px !important;
+    color: #006400 !important;
+}
+
+/* Fix for title sections */
+.logo, .feature-item, .recipe-header-text h3 {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Fix recipe title visibility */
+.recipe-card h3, .recipe-header-text h3, .recipes-grid .recipe-card h3 {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    background-color: transparent !important;
+    text-shadow: none !important;
+    border: none !important;
+    padding: 15px !important;
+    margin: 0 !important;
+    display: block !important;
+    text-align: center !important;
+    letter-spacing: 1px !important;
+}
+
+.recipe-header-text {
+    background-color: transparent !important;
+    border: 3px solid #000000 !important;
+    padding: 5px !important;
+}
+
+/* Fix box title contrast for recipe cards */
+.recipe-card {
+    border: 3px solid #000000 !important;
+}
+
+.recipe-card .recipe-header, .recipe-card .recipe-content {
+    background-color: #FFFFFF !important;
+}
+
+/* Force recipe title to be visible */
+.recipe-title {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+    background-color: #FFFFFF !important;
+    padding: 10px !important;
+    border: 2px solid #000000 !important;
+    margin: 10px auto !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Special override for titles inside recipe boxes */
+.recipe-card h3 {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    border: 2px solid #000000 !important;
+    padding: 10px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    display: block !important;
+}
+
+/* EMERGENCY FIX FOR RECIPE CARD TITLES - DIRECTLY TARGET RECIPE TITLES */
+.recipe-card h3, 
+.recipe-header-text h3, 
+.recipes-grid .recipe-card h3,
+.food-emoji-large + div,
+.recipe-title {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 28px !important;
+    background-color: transparent !important; 
+    text-shadow: none !important;
+    border: none !important;
+    padding: 15px !important;
+    display: block !important;
+    text-align: center !important;
+    letter-spacing: 1px !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Remove any whitespace, margins, paddings from title containers */
+.recipe-header-text {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Force recipe container elements to have dark text */
+.recipe-card, .recipe-card *,
+.recipes-grid .recipe-card, .recipes-grid .recipe-card * {
+    color: #000000 !important;
+}
+
+/* Ensure recipe names are very visible */
+.recipe-name, h2.recipe-name, h3.recipe-name {
+    color: #000000 !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: center !important;
+}
+
+/* Style actual empty box shown in screenshot */
+.food-emoji-large + div,
+.recipes-grid .recipe-card .recipe-content > div,
+.recipe-header > div {
+    color: #000000 !important;
+    font-size: 30px !important;
+    font-weight: 900 !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: center !important;
+    margin: 10px 0 !important;
+    padding: 0 !important;
+}
+
+/* EMERGENCY FIX FOR BLANK TITLE BOX - TARGET EXACT ELEMENTS */
+.recipe-card .recipe-content > div:first-child,
+.recipe-card .recipe-header + div,
+.food-emoji-large + div,
+.recipe-header-text h3 {
+    color: #000000 !important;
+    font-size: 36px !important;
+    font-weight: 900 !important;
+    font-family: Arial, sans-serif !important;
+    background-color: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    display: block !important;
+    width: 90% !important;
+    text-align: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1.3 !important;
+    word-spacing: normal !important;
+    text-indent: 0 !important;
+    text-shadow: none !important;
+}
+
+/* Force title text to be visible using multiple approaches */
+.recipe-title,
+.recipe-name,
+.recipe-card h3,
+.recipe-content h3,
+.food-emoji-large + div,
+.recipe-card .recipe-content > div:first-child {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    background: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    text-align: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Specifically fix Μανιτάρια Πλευρώτους title */
+.recipe-card:contains("Μανιτάρια") h3,
+.recipe-card:contains("Πλευρώτους") h3,
+.recipe-card .recipe-content > div:contains("Μανιτάρια"),
+.recipe-card .recipe-content > div:contains("Πλευρώτους") {
+    color: #000000 !important;
+    font-size: 36px !important;
+    background: #FFFFFF !important;
+    border: 3px solid #000000 !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    text-align: center !important;
+    font-weight: 900 !important;
+    display: block !important;
+}
+
+/* Quick Ingredients Grid */
+.quick-ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quick-ingredient {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #4a8745;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #333;
+}
+
+.quick-ingredient:hover {
+    background-color: #4a8745;
+    color: white;
+    transform: translateY(-2px);
+} 

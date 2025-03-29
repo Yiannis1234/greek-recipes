@@ -6,6 +6,7 @@
     <title>Έξυπνος Γεννήτης Ελληνικών Συνταγών</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<<<<<<< HEAD
     <style>
         :root {
             --primary-color: #4a8745;
@@ -146,10 +147,42 @@
             color: white;
         }
         
+=======
+    <link rel="stylesheet" href="greek_recipes.css">
+    <link rel="stylesheet" href="emoji_styles.css">
+    <!-- EMERGENCY TEXT FIX - Force black text everywhere -->
+    <style>
+        /* Force ALL text to be black or dark color */
+        * {
+            color: #000000 !important;
+        }
+        
+        /* Specific recipe title fix */
+        .recipe-card h3,
+        .recipe-header-text h3,
+        .recipe-title,
+        .recipes-grid .recipe-card h3,
+        .food-emoji-large + div,
+        .recipe-card .recipe-content > div:first-child {
+            color: #000000 !important;
+            background-color: #FFFFFF !important;
+            border: 3px solid #000000 !important;
+            font-weight: 900 !important;
+            font-size: 24px !important;
+            text-align: center !important;
+            padding: 15px !important;
+            margin: 10px auto !important;
+            width: 90% !important;
+            display: block !important;
+        }
+        
+        /* IMPROVED Language Toggle Button Styles */
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
         .language-toggle {
             position: absolute;
             top: 20px;
             right: 20px;
+<<<<<<< HEAD
             background-color: white;
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
@@ -208,10 +241,74 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+=======
+            transform: none;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: #4a8745 !important;
+            border: 1px solid #4a8745 !important;
+            padding: 8px 15px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            border-radius: 20px !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            width: auto !important;
+            text-align: center !important;
+            animation: none !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .language-toggle:hover {
+            background-color: #4a8745 !important;
+            color: white !important;
+        }
+        
+        /* Add home button styling */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transform: none;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: #4a8745 !important;
+            border: 1px solid #4a8745 !important;
+            padding: 8px 15px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            cursor: pointer !important;
+            border-radius: 20px !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            width: auto !important;
+            text-align: center !important;
+            animation: none !important;
+            text-decoration: none !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .home-button:hover {
+            background-color: #4a8745 !important;
+            color: white !important;
+        }
+        
+        /* Add home icon styling */
+        .home-button i {
+            margin-right: 8px !important;
+            font-size: 14px !important;
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <a href="https://github.com/Yiannis1234/greek-recipes" class="github-corner" aria-label="View source on GitHub">
         <svg width="80" height="80" viewBox="0 0 250 250" style="position: absolute; top: 0; left: 0; border: 0;" aria-hidden="true">
             <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -280,10 +377,171 @@
         </div>
     </footer>
 
+=======
+    <!-- Language Toggle Button with improved visibility -->
+    <button class="language-toggle" id="languageToggle">English</button>
+
+    <!-- Add visible homepage button -->
+    <a href="index.html" class="home-button" id="homeButton">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <div class="bg-pattern"></div>
+    <div class="container">
+        <div class="recipe-container">
+            <div id="welcome-screen" class="screen active">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h1 id="mainTitle">Έξυπνος Γεννήτης Ελληνικών Συνταγών</h1>
+                <p id="featureDesc">Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!</p>
+                <div class="features-list">
+                    <div class="feature-item" style="--item-index: 0;">
+                        <i class="fas fa-filter"></i>
+                        <span id="feature1">Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος</span>
+                    </div>
+                    <div class="feature-item" style="--item-index: 1;">
+                        <i class="fas fa-sort"></i>
+                        <span id="feature2">Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια</span>
+                    </div>
+                    <div class="feature-item" style="--item-index: 2;">
+                        <i class="fas fa-book-open"></i>
+                        <span id="feature3">Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας</span>
+                    </div>
+                </div>
+                <a href="greek_recipes.html" id="startButton" class="start-btn">
+                    <i class="fas fa-play-circle"></i> Ξεκινήστε
+                </a>
+            </div>
+
+            <div id="input-screen" class="screen">
+                <h2><i class="fas fa-leaf"></i> Επιλέξτε τα Συστατικά σας</h2>
+                <div class="ingredients-section">
+                    <div class="ingredients-input">
+                        <div class="input-with-suggestions">
+                            <i class="fas fa-search input-icon"></i>
+                            <input type="text" id="ingredient-input" placeholder="Προσθέστε συστατικό..." list="ingredient-suggestions">
+                            <datalist id="ingredient-suggestions">
+                                <!-- Common Greek ingredients populated via JavaScript -->
+                            </datalist>
+                        </div>
+                        <button onclick="addIngredient()"><i class="fas fa-plus"></i> Προσθήκη</button>
+                    </div>
+                    <div class="common-ingredients">
+                        <h4><i class="fas fa-thumbtack"></i> Δημοφιλή Συστατικά:</h4>
+                        <div class="ingredient-chips">
+                            <button class="ingredient-chip" onclick="quickAddIngredient('ντομάτες')"><i class="fas fa-apple-alt"></i> Ντομάτες</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('φέτα')"><i class="fas fa-cheese"></i> Φέτα</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('ελιές')"><i class="fas fa-seedling"></i> Ελιές</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('πατάτες')"><i class="fas fa-carrot"></i> Πατάτες</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('σπανάκι')"><i class="fas fa-leaf"></i> Σπανάκι</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('κιμάς')"><i class="fas fa-drumstick-bite"></i> Κιμάς</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('γιαούρτι')"><i class="fas fa-glass-whiskey"></i> Γιαούρτι</button>
+                            <button class="ingredient-chip" onclick="quickAddIngredient('μέλι')"><i class="fas fa-honey-pot"></i> Μέλι</button>
+                        </div>
+                    </div>
+                    <div class="selected-ingredients-container">
+                        <h4><i class="fas fa-check-circle"></i> Επιλεγμένα Συστατικά:</h4>
+                        <div class="selected-ingredients" id="selected-ingredients"></div>
+                    </div>
+                </div>
+
+                <div class="preferences-section">
+                    <h3><i class="fas fa-sliders-h"></i> Προτιμήσεις και Φίλτρα</h3>
+                    <div class="filter-section">
+                        <h4><i class="fas fa-utensils"></i> Διατροφικές Προτιμήσεις</h4>
+                        <div class="preferences-grid">
+                            <label class="preference-option">
+                                <input type="checkbox" value="vegetarian">
+                                <i class="fas fa-seedling pref-icon"></i> Χορτοφαγική
+                            </label>
+                            <label class="preference-option">
+                                <input type="checkbox" value="vegan">
+                                <i class="fas fa-leaf pref-icon"></i> Νηστίσιμη
+                            </label>
+                            <label class="preference-option">
+                                <input type="checkbox" value="gluten-free">
+                                <i class="fas fa-wheat-awn-circle-exclamation pref-icon"></i> Χωρίς γλουτένη
+                            </label>
+                            <label class="preference-option">
+                                <input type="checkbox" value="low-carb">
+                                <i class="fas fa-bread-slice pref-icon"></i> Χαμηλή σε υδατάνθρακες
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-filter"></i> Φίλτρα</h4>
+                        <div class="filter-container">
+                            <span class="filter-label">Δυσκολία:</span>
+                            <div class="filter-options">
+                                <button class="difficulty-filter" onclick="setDifficultyFilter('all')">Όλες</button>
+                                <button class="difficulty-filter easy" onclick="setDifficultyFilter('easy')">Εύκολη</button>
+                                <button class="difficulty-filter medium" onclick="setDifficultyFilter('medium')">Μέτρια</button>
+                                <button class="difficulty-filter hard" onclick="setDifficultyFilter('hard')">Δύσκολη</button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-container">
+                            <span class="filter-label">Χρόνος Μαγειρέματος:</span>
+                            <div class="filter-options">
+                                <button class="time-filter" onclick="setTimeFilter('all')">Όλοι</button>
+                                <button class="time-filter" data-time="quick" onclick="setTimeFilter('quick')">< 30 λεπτά</button>
+                                <button class="time-filter" data-time="medium" onclick="setTimeFilter('medium')">30-60 λεπτά</button>
+                                <button class="time-filter" data-time="long" onclick="setTimeFilter('long')">> 60 λεπτά</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="greek_recipes.html" class="generate-btn">
+                    <i class="fas fa-utensils"></i> Αναζήτηση Συνταγών
+                </a>
+            </div>
+
+            <div id="results-screen" class="screen">
+                <h2><i class="fas fa-book-open"></i> Συνταγές που Βρέθηκαν</h2>
+                
+                <div class="sorting-options">
+                    <button class="sort-button active" data-sort="default" onclick="setSortingOption('default')">
+                        <i class="fas fa-sort"></i> Προεπιλογή
+                    </button>
+                    <button class="sort-button" data-sort="alphabetical" onclick="setSortingOption('alphabetical')">
+                        <i class="fas fa-sort-alpha-down"></i> Αλφαβητικά
+                    </button>
+                    <button class="sort-button" data-sort="prep-time" onclick="setSortingOption('prep-time')">
+                        <i class="fas fa-clock"></i> Χρόνος Προετοιμασίας
+                    </button>
+                    <button class="sort-button" data-sort="cook-time" onclick="setSortingOption('cook-time')">
+                        <i class="fas fa-fire"></i> Χρόνος Μαγειρέματος
+                    </button>
+                    <button class="sort-button" data-sort="difficulty" onclick="setSortingOption('difficulty')">
+                        <i class="fas fa-chart-line"></i> Δυσκολία
+                    </button>
+                    <button class="sort-button" data-sort="calories" onclick="setSortingOption('calories')">
+                        <i class="fas fa-fire-alt"></i> Θερμίδες
+                    </button>
+                </div>
+                
+                <div class="recipes-grid" id="recipes-container"></div>
+                <button class="restart-btn" onclick="restartGenerator()">
+                    <i class="fas fa-redo"></i> Νέα Αναζήτηση
+                </button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | <i class="fas fa-heart"></i> Ελληνική Κουζίνα</p>
+    </footer>
+    <script src="greek_recipes.js"></script>
+    
+    <!-- Add language toggle functionality directly in index.html -->
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
     <script>
         // Language Toggle Functionality
         let currentLanguage = 'el'; // Default language is Greek (el)
         
+<<<<<<< HEAD
         // Translations
         const translations = {
             el: {
@@ -321,11 +579,65 @@
                 downloadTitle: 'Download the Project',
                 downloadText: 'Want to use this application locally or improve it? Download the code from GitHub!',
                 downloadButton: 'Download ZIP'
+=======
+        // Language translations
+        const translations = {
+            el: {
+                mainTitle: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
+                featureDesc: 'Ανακαλύψτε νέες ελληνικές συνταγές με βάση τα συστατικά σας!',
+                feature1: 'Φιλτράρετε συνταγές με βάση τη δυσκολία και το χρόνο μαγειρέματος',
+                feature2: 'Ταξινομήστε τις συνταγές σας με πολλαπλά κριτήρια',
+                feature3: 'Πάνω από 50 αυθεντικές ελληνικές συνταγές στη βάση δεδομένων μας',
+                startButton: 'Ξεκινήστε',
+                homeButton: 'ΑΡΧΙΚΗ',
+                ingredientsTitle: 'Επιλέξτε τα Συστατικά σας',
+                addButton: 'Προσθήκη',
+                popularIngredientsTitle: 'Δημοφιλή Συστατικά:',
+                selectedIngredientsTitle: 'Επιλεγμένα Συστατικά:',
+                searchButton: 'Αναζήτηση Συνταγών',
+                recipesFoundTitle: 'Συνταγές που Βρέθηκαν',
+                defaultSort: 'Προεπιλογή',
+                alphabet: 'Αλφαβητικά',
+                prepTime: 'Χρόνος Προετοιμασίας',
+                cookTime: 'Χρόνος Μαγειρέματος',
+                difficulty: 'Δυσκολία',
+                calories: 'Θερμίδες',
+                newSearch: 'Νέα Αναζήτηση',
+                dietaryPreferencesTitle: 'Διατροφικές Προτιμήσεις',
+                filtersTitle: 'Φίλτρα',
+                footer: '© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | Ελληνική Κουζίνα'
+            },
+            en: {
+                mainTitle: 'Smart Greek Recipe Generator',
+                featureDesc: 'Discover new Greek recipes based on your ingredients!',
+                feature1: 'Filter recipes by difficulty and cooking time',
+                feature2: 'Sort your recipes with multiple criteria',
+                feature3: 'Over 50 authentic Greek recipes in our database',
+                startButton: 'Get Started',
+                homeButton: 'HOME',
+                ingredientsTitle: 'Select Your Ingredients',
+                addButton: 'Add',
+                popularIngredientsTitle: 'Popular Ingredients:',
+                selectedIngredientsTitle: 'Selected Ingredients:',
+                searchButton: 'Search Recipes',
+                recipesFoundTitle: 'Recipes Found',
+                defaultSort: 'Default',
+                alphabet: 'Alphabetically',
+                prepTime: 'Preparation Time',
+                cookTime: 'Cooking Time',
+                difficulty: 'Difficulty',
+                calories: 'Calories',
+                newSearch: 'New Search',
+                dietaryPreferencesTitle: 'Dietary Preferences',
+                filtersTitle: 'Filters',
+                footer: '© 2024 Smart Greek Recipe Generator | Greek Cuisine'
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
             }
         };
         
         // Function to update UI text based on selected language
         function updateLanguage() {
+<<<<<<< HEAD
             // Update page title
             document.title = translations[currentLanguage].title;
             
@@ -345,10 +657,97 @@
             document.getElementById('downloadTitle').textContent = translations[currentLanguage].downloadTitle;
             document.getElementById('downloadText').textContent = translations[currentLanguage].downloadText;
             document.getElementById('downloadButton').textContent = translations[currentLanguage].downloadButton;
+=======
+            console.log("Updating language to:", currentLanguage);
+            
+            // Direct element ID updates
+            const elementsToUpdate = {
+                'mainTitle': translations[currentLanguage].mainTitle,
+                'featureDesc': translations[currentLanguage].featureDesc,
+                'feature1': translations[currentLanguage].feature1,
+                'feature2': translations[currentLanguage].feature2,
+                'feature3': translations[currentLanguage].feature3,
+                'startButton': translations[currentLanguage].startButton
+            };
+            
+            // Update each element by ID
+            for (const [id, text] of Object.entries(elementsToUpdate)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                    console.log(`Updated ${id} to ${text}`);
+                }
+            }
+            
+            // Update by CSS selectors for common elements
+            const selectorUpdates = {
+                'h2': translations[currentLanguage].ingredientsTitle,
+                '.generate-btn, .search-btn': translations[currentLanguage].searchButton,
+                '.restart-btn': translations[currentLanguage].newSearch
+            };
+            
+            for (const [selector, text] of Object.entries(selectorUpdates)) {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    // Skip if the element has children (like icons)
+                    const hasIconChild = Array.from(el.children).some(child => 
+                        child.tagName === 'I' || child.classList.contains('fas')
+                    );
+                    
+                    if (!hasIconChild) {
+                        el.textContent = text;
+                    } else {
+                        // Preserve icons when updating text
+                        const iconHTML = Array.from(el.children)
+                            .filter(child => child.tagName === 'I' || child.classList.contains('fas'))
+                            .map(icon => icon.outerHTML)
+                            .join('');
+                        el.innerHTML = iconHTML + ' ' + text;
+                    }
+                });
+            }
+            
+            // Update button texts preserving icons
+            document.querySelectorAll('button').forEach(button => {
+                // Check if button contains any of these words for specific translations
+                const buttonText = button.textContent.trim().toLowerCase();
+                const iconElement = button.querySelector('i');
+                const iconHTML = iconElement ? iconElement.outerHTML + ' ' : '';
+                
+                if (buttonText.includes('αναζήτηση') || buttonText.includes('search')) {
+                    button.innerHTML = iconHTML + translations[currentLanguage].searchButton;
+                } else if (buttonText.includes('νέα') || buttonText.includes('new')) {
+                    button.innerHTML = iconHTML + translations[currentLanguage].newSearch;
+                } else if (buttonText.includes('ξεκινήστε') || buttonText.includes('get started')) {
+                    button.innerHTML = iconHTML + translations[currentLanguage].startButton;
+                } else if (buttonText.includes('προσθήκη') || buttonText.includes('add')) {
+                    button.innerHTML = iconHTML + translations[currentLanguage].addButton;
+                }
+            });
+            
+            // Update page title
+            document.title = translations[currentLanguage].mainTitle;
+            
+            // Update footer
+            const footer = document.querySelector('footer');
+            if (footer) {
+                const footerP = footer.querySelector('p');
+                if (footerP) {
+                    footerP.innerHTML = translations[currentLanguage].footer;
+                } else {
+                    footer.textContent = translations[currentLanguage].footer;
+                }
+            }
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
         }
         
         // Set up language toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD
             const languageToggle = document.getElementById('languageToggle');
             
             if (languageToggle) {
@@ -356,6 +755,20 @@
                 languageToggle.addEventListener('click', function() {
                     // Toggle language
                     currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+=======
+            console.log("DOM fully loaded, setting up language toggle");
+            // Find the language toggle button
+            const languageToggle = document.getElementById('languageToggle');
+            
+            if (languageToggle) {
+                console.log("Found language toggle button");
+                // Add click event listener
+                languageToggle.addEventListener('click', function() {
+                    console.log("Language toggle clicked");
+                    // Toggle language
+                    currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+                    console.log("Switched to:", currentLanguage);
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
                     
                     // Update UI text
                     updateLanguage();
@@ -366,8 +779,27 @@
                 
                 // Set initial button text
                 languageToggle.textContent = 'English';
+<<<<<<< HEAD
             }
         });
+=======
+            } else {
+                console.error("Language toggle button not found!");
+            }
+        });
+
+        // Add missing functions for index.html
+        function startRecipeGenerator() {
+            console.log("Starting recipe generator from index.html");
+            window.location.href = "greek_recipes.html";
+        }
+        
+        // Add function to handle the generate button click
+        function generateRecipes() {
+            console.log("Generate recipes clicked on index page");
+            window.location.href = "greek_recipes.html";
+        }
+>>>>>>> 6ab1ccc0abe8244db719387a398685b9f41803e4
     </script>
 </body>
 </html> 
