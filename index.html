@@ -436,6 +436,18 @@
                 console.error("Language toggle button not found!");
             }
         });
+
+        // Add missing functions for index.html
+        function startRecipeGenerator() {
+            console.log("Starting recipe generator from index.html");
+            window.location.href = "greek_recipes.html";
+        }
+        
+        // Add function to handle the generate button click
+        function generateRecipes() {
+            console.log("Generate recipes clicked on index page");
+            window.location.href = "greek_recipes.html";
+        }
     </script>
 </body>
 </html> 
