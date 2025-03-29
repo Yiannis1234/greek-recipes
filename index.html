@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Έξυπνος Γεννήτης Ελληνικών Συνταγών</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a8745;
+            --secondary-color: #e8f5e9;
+            --text-color: #333;
+            --accent-color: #6bb166;
+            --light-color: #f8f8f8;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: #3a6b37;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .language-toggle:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .github-corner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            fill: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out;
+        }
+        
+        @keyframes octocat-wave {
+            0%, 100% { transform: rotate(0); }
+            20%, 60% { transform: rotate(-25deg); }
+            40%, 80% { transform: rotate(10deg); }
+        }
+        
+        @media (max-width: 500px) {
+            .github-corner:hover .octo-arm {
+                animation: none;
+            }
+            .github-corner .octo-arm {
+                animation: octocat-wave 560ms ease-in-out;
+            }
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .download-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .download-section p {
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/Yiannis1234/greek-recipes" class="github-corner" aria-label="View source on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="position: absolute; top: 0; left: 0; border: 0;" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a>
+    <button id="languageToggle" class="language-toggle">English</button>
+    
+    <div class="container">
+        <header class="header">
+            <a href="#" class="logo">
+                <i class="fas fa-utensils"></i>
+                <span id="headerLogo">Έξυπνος Γεννήτης Ελληνικών Συνταγών</span>
+            </a>
+        </header>
+        
+        <section class="hero">
+            <h1 id="heroTitle">Ανακαλύψτε την Ελληνική Κουζίνα</h1>
+            <p id="heroSubtitle">Βρείτε την τέλεια ελληνική συνταγή με βάση τα συστατικά που έχετε ήδη στην κουζίνα σας. Απλώς επιλέξτε τα υλικά και αφήστε μας να σας δείξουμε τι μπορείτε να μαγειρέψετε!</p>
+            <a href="recipes.html" class="btn">
+                <i class="fas fa-search"></i> <span id="heroButton">Αναζήτηση Συνταγών</span>
+            </a>
+        </section>
+    </div>
+    
+    <section class="features">
+        <div class="container">
+            <h2 id="featuresTitle">Λειτουργίες</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-filter"></i>
+                    <h3 id="featureTitle1">Φιλτράρετε με Συστατικά</h3>
+                    <p id="featureText1">Επιλέξτε από μια πλούσια βάση συστατικών και βρείτε συνταγές με βάση τα υλικά που έχετε διαθέσιμα.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <h3 id="featureTitle2">Ταξινομήστε με Ευκολία</h3>
+                    <p id="featureText2">Ταξινομήστε τις συνταγές με βάση το επίπεδο δυσκολίας, τον χρόνο προετοιμασίας ή τις θερμίδες.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <h3 id="featureTitle3">Συλλογή Συνταγών</h3>
+                    <p id="featureText3">Εξερευνήστε μια πλούσια συλλογή από αυθεντικές ελληνικές συνταγές με λεπτομερείς οδηγίες.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="download-section">
+        <div class="container">
+            <h2 id="downloadTitle">Κατεβάστε το Project</h2>
+            <p id="downloadText">Θέλετε να χρησιμοποιήσετε αυτή την εφαρμογή τοπικά ή να τη βελτιώσετε; Κατεβάστε τον κώδικα από το GitHub!</p>
+            <a href="https://github.com/Yiannis1234/greek-recipes/archive/refs/heads/main.zip" class="btn">
+                <i class="fas fa-download"></i> <span id="downloadButton">Λήψη ZIP</span>
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p id="footer">© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | <i class="fas fa-heart"></i> Ελληνική Κουζίνα</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Functionality
+        let currentLanguage = 'el'; // Default language is Greek (el)
+        
+        // Translations
+        const translations = {
+            el: {
+                title: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
+                headerLogo: 'Έξυπνος Γεννήτης Ελληνικών Συνταγών',
+                heroTitle: 'Ανακαλύψτε την Ελληνική Κουζίνα',
+                heroSubtitle: 'Βρείτε την τέλεια ελληνική συνταγή με βάση τα συστατικά που έχετε ήδη στην κουζίνα σας. Απλώς επιλέξτε τα υλικά και αφήστε μας να σας δείξουμε τι μπορείτε να μαγειρέψετε!',
+                heroButton: 'Αναζήτηση Συνταγών',
+                featuresTitle: 'Λειτουργίες',
+                featureTitle1: 'Φιλτράρετε με Συστατικά',
+                featureText1: 'Επιλέξτε από μια πλούσια βάση συστατικών και βρείτε συνταγές με βάση τα υλικά που έχετε διαθέσιμα.',
+                featureTitle2: 'Ταξινομήστε με Ευκολία',
+                featureText2: 'Ταξινομήστε τις συνταγές με βάση το επίπεδο δυσκολίας, τον χρόνο προετοιμασίας ή τις θερμίδες.',
+                featureTitle3: 'Συλλογή Συνταγών',
+                featureText3: 'Εξερευνήστε μια πλούσια συλλογή από αυθεντικές ελληνικές συνταγές με λεπτομερείς οδηγίες.',
+                footer: '© 2024 Έξυπνος Γεννήτης Ελληνικών Συνταγών | <i class="fas fa-heart"></i> Ελληνική Κουζίνα',
+                downloadTitle: 'Κατεβάστε το Project',
+                downloadText: 'Θέλετε να χρησιμοποιήσετε αυτή την εφαρμογή τοπικά ή να τη βελτιώσετε; Κατεβάστε τον κώδικα από το GitHub!',
+                downloadButton: 'Λήψη ZIP'
+            },
+            en: {
+                title: 'Smart Greek Recipe Generator',
+                headerLogo: 'Smart Greek Recipe Generator',
+                heroTitle: 'Discover Greek Cuisine',
+                heroSubtitle: 'Find the perfect Greek recipe based on ingredients you already have in your kitchen. Simply select the ingredients and let us show you what you can cook!',
+                heroButton: 'Search Recipes',
+                featuresTitle: 'Features',
+                featureTitle1: 'Filter by Ingredients',
+                featureText1: 'Choose from a rich database of ingredients and find recipes based on what you have available.',
+                featureTitle2: 'Sort by Difficulty',
+                featureText2: 'Sort recipes by difficulty level, preparation time, or calories.',
+                featureTitle3: 'Recipe Collection',
+                featureText3: 'Explore a rich collection of authentic Greek recipes with detailed instructions.',
+                footer: '© 2024 Smart Greek Recipe Generator | <i class="fas fa-heart"></i> Greek Cuisine',
+                downloadTitle: 'Download the Project',
+                downloadText: 'Want to use this application locally or improve it? Download the code from GitHub!',
+                downloadButton: 'Download ZIP'
+            }
+        };
+        
+        // Function to update UI text based on selected language
+        function updateLanguage() {
+            // Update page title
+            document.title = translations[currentLanguage].title;
+            
+            // Update each element by ID
+            document.getElementById('headerLogo').textContent = translations[currentLanguage].headerLogo;
+            document.getElementById('heroTitle').textContent = translations[currentLanguage].heroTitle;
+            document.getElementById('heroSubtitle').textContent = translations[currentLanguage].heroSubtitle;
+            document.getElementById('heroButton').textContent = translations[currentLanguage].heroButton;
+            document.getElementById('featuresTitle').textContent = translations[currentLanguage].featuresTitle;
+            document.getElementById('featureTitle1').textContent = translations[currentLanguage].featureTitle1;
+            document.getElementById('featureText1').textContent = translations[currentLanguage].featureText1;
+            document.getElementById('featureTitle2').textContent = translations[currentLanguage].featureTitle2;
+            document.getElementById('featureText2').textContent = translations[currentLanguage].featureText2;
+            document.getElementById('featureTitle3').textContent = translations[currentLanguage].featureTitle3;
+            document.getElementById('featureText3').textContent = translations[currentLanguage].featureText3;
+            document.getElementById('footer').innerHTML = translations[currentLanguage].footer;
+            document.getElementById('downloadTitle').textContent = translations[currentLanguage].downloadTitle;
+            document.getElementById('downloadText').textContent = translations[currentLanguage].downloadText;
+            document.getElementById('downloadButton').textContent = translations[currentLanguage].downloadButton;
+        }
+        
+        // Set up language toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            
+            if (languageToggle) {
+                // Add click event listener
+                languageToggle.addEventListener('click', function() {
+                    // Toggle language
+                    currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+                    
+                    // Update UI text
+                    updateLanguage();
+                    
+                    // Update toggle button text
+                    languageToggle.textContent = currentLanguage === 'el' ? 'English' : 'Ελληνικά';
+                });
+                
+                // Set initial button text
+                languageToggle.textContent = 'English';
+            }
+        });
+    </script>
+</body>
+</html> 
